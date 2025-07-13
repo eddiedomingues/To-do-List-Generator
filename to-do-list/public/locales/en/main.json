@@ -1,0 +1,24 @@
+{
+  "title": "To-Do List Generator",
+  "main_heading": "To-do List",
+  "login_panel": {
+    "buttonTooltip": "Log In",
+    "welcomeMessage": "Welcome",
+    "logOutButton": "Log Out"
+  },
+  "list_backdrop": {
+    "task_name": "Enter a task",
+    "add_button": "Add",
+    "task_desc": "Enter a task description (Optional)",
+    "export_button": "Export",
+    "delete_button": "Clear Tasks",
+    "import_button": "Import"
+  },
+  "list": {
+    "no_tasks": "No tasks available. Add one above!",
+    "desc_trigger_text": {
+      "show": "Show Description",
+      "hide": "Hide Description"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+    "export": {
+        "warnings": {
+            "exportMethodFail": {
+                "heading": "Select a valid method",
+                "content": "Please select one of the valid exporting methods"
+            }
+        },
+        "errors": {
+            "heading": "Error in exporting",
+            "content": {
+                "failConnectServer": "Failed to connect to server",
+                "httpError": "HTTP error!",
+                "wordError": "Error in exporting word document",
+                "unexpectedError": "Unexpected error occured"
+            }
+        },
+        "successes": {
+            "fileGeneration": {
+                "heading": "Success",
+                "content": "Generated"
+            }
+        }
+    },
+    "main": {
+        "warnings": {
+            "heading": "Warning",
+            "content": {
+                "invalidTaskName": "You must enter a valid task name to add a task",
+                "importFile": "When you import a file you lose all your current progress"
+            }
+        },
+        "infos": {
+            "editMode": {
+                "heading": "Edit Mode",
+                "content": "To save the changes click the edit button again"
+            }
+        },
+        "successes": {
+            "editMode": {
+                "heading": "Success",
+                "content": "Task information updated"
+            }
+        }
+    },
+    "login": {
+        "successes": {
+            "loggedIn": {
+                "heading": "Welcome",
+                "content": "Successfully logged on onto"
+            }
+        }, 
+        "errors": {
+            "logInFail": {
+                "heading": "Log In attempt failed",
+                "content": {
+                    "auth/user-not-found": "No account found with this email",
+                    "auth/wrong-password": "Incorrect password. Please try again",
+                    "auth/invalid-email": "Please enter a valid email address",
+                    "auth/too-many-requests": "Too many attempts. Please try again later",
+                    "default": "An unexpected error occurred. Please try again"
+                }
+            }
+        }
+    }
+}

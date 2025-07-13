@@ -1,0 +1,66 @@
+{
+    "export": {
+        "warnings": {
+            "exportMethodFail": {
+                "heading": "Selecione um método válido",
+                "content": "Por favor, selecione um dos métodos de exportação válidos"
+            }
+        },
+        "errors": {
+            "heading": "Erro ao exportar",
+            "content": {
+                "failConnectServer": "Falha ao conectar-se ao servidor",
+                "httpError": "Erro HTTP!",
+                "wordError": "Erro ao exportar documento Word",
+                "unexpectedError": "Ocorreu um erro inesperado"
+            }
+        },
+        "successes": {
+            "fileGeneration": {
+                "heading": "Sucesso",
+                "content": "Gerado"
+            }
+        }
+    },
+    "main": {
+        "warnings": {
+            "heading": "Aviso",
+            "content": {
+                "invalidTaskName": "Deve inserir um nome de tarefa válido para adicionar uma tarefa",
+                "importFile": "Ao importar um ficheiro, perderá todo o seu progresso atual"
+            }
+        },
+        "infos": {
+            "editMode": {
+                "heading": "Modo de Edição",
+                "content": "Para guardar as alterações, clique novamente no botão de edição"
+            }
+        },
+        "successes": {
+            "editMode": {
+                "heading": "Sucesso",
+                "content": "Informação da tarefa atualizada"
+            }
+        }
+    },
+     "login": {
+    "successes": {
+      "loggedIn": {
+        "heading": "Bem-vindo",
+        "content": "Sessão iniciada com sucesso em"
+      }
+    },
+    "errors": {
+      "logInFail": {
+        "heading": "A tentativa de login falhou",
+        "content": {
+          "auth/user-not-found": "Nenhuma conta encontrada com este e-mail",
+          "auth/wrong-password": "Palavra-passe incorreta. Por favor, tente novamente",
+          "auth/invalid-email": "Por favor, insira um endereço de e-mail válido",
+          "auth/too-many-requests": "Demasiadas tentativas. Por favor, tente novamente mais tarde",
+          "default": "Ocorreu um erro inesperado. Por favor, tente novamente"
+        }
+      }
+    }
+  }
+}

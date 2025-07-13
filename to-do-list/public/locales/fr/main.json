@@ -1,0 +1,24 @@
+{
+  "title": "Générateur de liste de tâches",
+  "main_heading": "Liste de Tâches",
+    "login_panel": {
+    "buttonTooltip": "Se connecter",
+    "welcomeMessage": "Bienvenue",
+    "logOutButton": "Se déconnecter"
+  },
+  "list_backdrop": {
+    "task_name": "Entrez une tâche",
+    "add_button": "Ajouter",
+    "task_desc": "Entrez une description pour la tâche (Optionnel)",
+    "export_button": "Exporter",
+    "delete_button": "Effacer les Tâches",
+    "import_button": "Importer"
+  },
+  "list": {
+    "no_tasks": "Aucune tâche disponible. Ajoutez-en une ci-dessus !",
+    "desc_trigger_text": {
+      "show": "Afficher la Description",
+      "hide": "Masquer la Description"
+    }
+  }
+}

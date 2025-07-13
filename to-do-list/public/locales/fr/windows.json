@@ -1,0 +1,71 @@
+{
+    "export": {
+        "exportMain": {
+            "heading": "Exporter la Liste de Tâches",
+            "content": {
+                "method": {
+                    "label": "Méthode",
+                    "values": {
+                        "unselected": "Sélectionnez une méthode",
+                        "json": "Exporter en tant que fichier JSON (Compatible pour importer votre liste ici)",
+                        "word": "Exporter en tant que Document Word",
+                        "html": "Exporter en tant que Page Web (.html)",
+                        "pdf": "Exporter en tant que PDF",
+                        "text": "Exporter en tant que Texte"
+                    }
+                },
+                "fileName": {
+                    "label": "Nom du Fichier (Optionnel)"
+                },
+                "listName": {
+                    "label": "Nom de la Liste (Optionnel)"
+                },
+                "listCompletionDate": {
+                    "label": "Date d'achèvement de la liste (Optionnel)"
+                },
+                "documentTheme": {
+                    "label": "Thème du Document"
+                }
+            },
+            "footer": {
+                "exportButton": "Exporter",
+                "exportProgress": {
+                    "genPreview": "Génération de l'aperçu du document",
+                    "genFinal": "Génération du document final",
+                    "genHTML": "Génération du document HTML",
+                    "genTXT": "Génération du document texte"
+                }
+            }
+        },
+        "exportPreview": {
+            "heading": "Aperçu du Document",
+            "footer": {
+                "downloadButton": "Télécharger"
+            }
+        }
+    },
+    "rUSure": {
+        "heading": "Êtes-vous sûr ?",
+        "content": "Si votre progression est importante, veuillez exporter les tâches en tant que fichier JSON pour les importer plus tard ici..",
+        "footer": {
+            "noButton": "Non",
+            "yesButton": "Oui"
+        }
+    },
+      "logIn": {
+    "heading": "Se connecter à un compte",
+    "content": {
+      "email": {
+        "label": "E-mail :",
+        "placeholder": "Entrez l'e-mail"
+      },
+      "password": {
+        "label": "Mot de passe :",
+        "placeholder": "Entrez le mot de passe"
+      }
+    },
+    "footer": {
+      "logInButton": "Se connecter"
+    }
+  }
+}

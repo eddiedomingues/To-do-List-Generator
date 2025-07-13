@@ -1,0 +1,272 @@
+<html>
+  <head>
+    <style>
+      :root {
+        /* Color Palette */
+        --color-primary: #007bff;
+        --color-primary-hover: #0056b3;
+        --color-background: #ffffff;
+        --color-text: rgba(180, 180, 180, 0.87);
+        --color-text-secondary: white;
+        --color-heading-primary: rgba(255, 255, 255, 0.87);
+        --body-background-color: #242424;
+        --taskOddColor: rgb(105 105 105 / 22%);
+
+        --seperator-color: white;
+
+        /* Typography */
+        --font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background-color: var(--body-background-color);
+        font-family: var(--font-family);
+        color: var(--color-text);
+        padding: 2rem;
+        display: grid;
+        grid-auto-rows: min-content;
+        gap: 0px;
+        column-gap: 0rem;
+        row-gap: 0rem;
+      }
+
+      /* Aditives */
+      .lineSeperator {
+        width: 100%;
+        height: 1px;
+        background-color: var(--seperator-color);
+      }
+
+      /* Main */
+
+      /* Header */
+      header {
+        display: grid;
+        justify-content: center;
+      }
+
+      #listName {
+        font-size: 2.5rem;
+        color: var(--color-text-secondary);
+      }
+
+      .date {
+        color: var(--color-text-secondary);
+        font-weight: lighter;
+      }
+
+      .date.hidden {
+        display: none;
+      }
+
+      /* Content */
+      .listContainer {
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+        height: fit-content;
+      }
+
+      #list {
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-auto-rows: min-content;
+        gap: 0px 0px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .toDoItem {
+        display: grid;
+        grid-auto-columns: auto min-content;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 0.7rem;
+        grid-template-rows: auto minmax(0, min-content);
+      }
+
+      .toDoItem:nth-child(odd) {
+        background-color: var(--taskOddColor);
+      }
+
+      .taskNameContainer {
+        display: grid;
+        grid-template-columns: min-content auto min-content;
+        grid-template-rows: min-content;
+        align-items: center;
+      }
+
+      .taskName {
+        white-space: normal;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        color: var(--color-text-secondary);
+        font-weight: bold;
+        padding-left: 0.3rem;
+      }
+
+      #taskListIndicator {
+        color: var(--color-heading-primary);
+        user-select: none;
+      }
+
+      /* Description */
+
+      .buttonContainer {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .descBtn {
+        width: fit-content;
+        height: fit-content;
+        background-color: transparent;
+        border: transparent;
+        border-width: 0px;
+      }
+
+      .descSVG {
+        fill: white;
+        width: 1.7rem;
+        background-color: transparent;
+      }
+
+      .desc {
+        display: grid;
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        font-style: italic;
+      }
+
+      .desc.hidden {
+        line-height: 0;
+        opacity: 0;
+        overflow: hidden;
+      }
+
+      /* Footer */
+
+      .footer {
+        display: grid;
+        text-align: center;
+        margin-top: 1rem;
+      }
+    </style>
+
+    <script>
+      // Initial Variables
+      const data = {};
+
+      const taskElements = [];
+
+      // SVG Imports
+      const showSVG =
+        '<svg class="descSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-120 300-300l44-44 136 136 136-136 44 44-180 180ZM344-612l-44-44 180-180 180 180-44 44-136-136-136 136Z"/></svg>';
+
+      const hideSVG =
+        '<svg class="descSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="48px" fill="#e3e3e3"><path d="m343-160-43-43 180-180 180 180-43 43-137-137-137 137Zm137-417L300-757l43-43 137 137 137-137 43 43-180 180Z"/></svg>';
+
+      // Functions
+      function createListItem(task, index) {
+        // Create a new list item element
+        const newListItem = document.createElement("li");
+
+        // Add content and classes to it
+        newListItem.classList.add("toDoItem"); // Add a class for styling
+
+        const taskNameCon = document.createElement("div");
+        newListItem.appendChild(taskNameCon);
+        taskNameCon.classList.add("taskNameContainer");
+
+        const indexNumber = document.createElement("span");
+        taskNameCon.appendChild(indexNumber);
+        indexNumber.textContent = index + 1 + ". ";
+        indexNumber.classList.add("taskNumber");
+
+        const taskName = document.createElement("span");
+        taskNameCon.appendChild(taskName);
+        taskName.classList.add("taskName");
+        taskName.textContent = task.name;
+
+        // Description
+
+        const buttonContainer = document.createElement("div");
+        taskNameCon.appendChild(buttonContainer);
+        buttonContainer.classList.add("buttonContainer");
+
+        const desc = document.createElement("div");
+        desc.classList.add("desc");
+        newListItem.appendChild(desc);
+
+        if (task.desc.trim() !== "") {
+          desc.textContent = task.desc;
+
+          let descHidden = task.descHidden ? task.descHidden : true;
+
+          const showDescButton = document.createElement("button");
+          buttonContainer.appendChild(showDescButton);
+          showDescButton.classList.add("descBtn");
+
+          const toggleDesc = () => {
+            if (descHidden === true) {
+              desc.classList.add("hidden");
+              showDescButton.innerHTML = showSVG;
+            } else {
+              desc.classList.remove("hidden");
+              showDescButton.innerHTML = hideSVG;
+            }
+          };
+
+          const handleDescClick = (event) => {
+            descHidden = !descHidden;
+            toggleDesc();
+          };
+
+          toggleDesc();
+
+          showDescButton.onclick = handleDescClick;
+        }
+
+        return newListItem;
+      }
+
+      // Wait until document has loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        const listNameTitle = document.getElementById("listName");
+        const taskList = document.getElementById("list");
+        const taskInput = document.getElementById("new-task-input");
+        const date = document.getElementById("date");
+
+        if (data.metaData.date) {
+          if (data.metaData.date.trim() !== "") {
+            date.textContent = "Desired Completion Date: " + data.metaData.date;
+            date.classList.remove("hidden");
+          }
+        }
+
+        data.tasks.map((task, index) => {
+          const listElement = createListItem(task, index);
+          taskList.appendChild(listElement);
+        });
+
+        data.metaData.listName
+          ? (listNameTitle.textContent = data.metaData.listName)
+          : (listNameTitle.textContent = "To-Do List");
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1 id="listName"></h1>
+    </header>
+    <h4 id="date" class="date hidden"></h4>
+    <h2 id="taskListIndicator">Tasks to complete</h2>
+    <div class="lineSeperator"></div>
+    <div class="listContainer">
+      <ul id="list"></ul>
+    </div>
+    <div class="lineSeperator"></div>
+    <footer class="footer">
+      Generated by To-do List (Made by Edward Costa Domingues) © 2025
+    </footer>
+  </body>
+</html>

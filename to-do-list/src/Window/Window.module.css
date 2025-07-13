@@ -1,0 +1,147 @@
+/*
+=================================
+Window Component Styles
+=================================
+This file follows a hierarchical structure matching the JSX:
+1.  Top-Level Container & Backdrop
+2.  Main Window Element
+3.  Window Sections (Header, Content, Footer)
+4.  Animation & Active States
+*/
+
+/* --- 1. Top-Level Container & Backdrop --- */
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Start hidden for opening animation */
+  pointer-events: none; /* No interaction when not fully active */
+  transition: opacity 0.3s ease-out; /* Transition for container fade */
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0; /* Start hidden for opening animation */
+  transition: opacity 0.5s ease-in-out; /* Transition for backdrop fade */
+}
+
+/* --- 2. Main Window Element --- */
+
+.window {
+  position: absolute;
+  padding: 1rem;
+  top: 50%;
+  left: 50%;
+  background-color: #242424;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: auto;
+  grid-template-rows: minmax(0, min-content) auto minmax(0, min-content);
+
+  /* Animation start state */
+  transform: translate(-50%, -50%) scale(0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  box-shadow: 0px 1px 13px -3px rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: 0px 1px 13px -3px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 0px 1px 13px -3px rgba(0, 0, 0, 0.41);
+}
+
+/* --- 3. Window Sections (Header, Content, Footer) --- */
+
+/* Header & its children */
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min-content;
+  grid-template-rows: auto;
+  column-gap: 2.5rem;
+  align-content: center;
+  justify-items: right;
+  height: fit-content;
+  min-width: 0;
+}
+
+.headerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-self: left;
+  min-width: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButton {
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  transition: background-color 0.2s ease; /* Added for consistency */
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.closeButton:hover {
+  background-color: rgb(71 71 71 / 74%);
+}
+
+.closeButton > .closeImage {
+  height: 100%;
+  width: 100%;
+  fill: rgba(209, 209, 209, 0.87);
+  transition: fill 0.3s ease;
+}
+
+.closeButton:hover:enabled > .closeImage {
+  fill: rgba(255, 255, 255, 0.87);
+}
+
+/* Content */
+.content {
+  overflow: auto;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+/* --- 4. Animation & Active States --- */
+
+/* When the component is set to be visible, this class is added to everything */
+.container.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.backdrop.is-active {
+  opacity: 1;
+  pointer-events: auto; /* Enable interaction */
+}
+
+.window.is-active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto; /* Enable interaction */
+}

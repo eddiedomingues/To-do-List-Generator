@@ -1,0 +1,71 @@
+{
+    "export": {
+        "exportMain": {
+            "heading": "Exportar Lista de Tareas",
+            "content": {
+                "method": {
+                    "label": "Método",
+                    "values": {
+                        "unselected": "Selecciona un método",
+                        "json": "Exportar como archivo JSON (Compatible para importar tu lista aquí)",
+                        "word": "Exportar como Documento Word",
+                        "html": "Exportar como Página Web (.html)",
+                        "pdf": "Exportar como PDF",
+                        "text": "Exportar como Texto"
+                    }
+                },
+                "fileName": {
+                    "label": "Nombre del Archivo (Opcional)"
+                },
+                "listName": {
+                    "label": "Nombre de la Lista (Opcional)"
+                },
+                "listCompletionDate": {
+                    "label": "Fecha de Finalización de la Lista (Opcional)"
+                },
+                "documentTheme": {
+                    "label": "Tema del Documento"
+                }
+            },
+            "footer": {
+                "exportButton": "Exportar",
+                "exportProgress": {
+                    "genPreview": "Generando vista previa del documento",
+                    "genFinal": "Generando documento final",
+                    "genHTML": "Generando documento HTML",
+                    "genTXT": "Generando documento de texto"
+                }
+            }
+        },
+        "exportPreview": {
+            "heading": "Vista Previa del Documento",
+            "footer": {
+                "downloadButton": "Descargar"
+            }
+        }
+    },
+    "rUSure": {
+        "heading": "¿Estás seguro?",
+        "content": "Si tu progreso es importante, por favor, exporta las tareas como un archivo JSON para importarlas más tarde aquí..",
+        "footer": {
+            "noButton": "No",
+            "yesButton": "Sí"
+        }
+    },
+      "logIn": {
+    "heading": "Iniciar sesión en una cuenta",
+    "content": {
+      "email": {
+        "label": "Correo electrónico:",
+        "placeholder": "Introduzca el correo electrónico"
+      },
+      "password": {
+        "label": "Contraseña:",
+        "placeholder": "Introduzca la contraseña"
+      }
+    },
+    "footer": {
+      "logInButton": "Iniciar Sesión"
+    }
+  }
+}

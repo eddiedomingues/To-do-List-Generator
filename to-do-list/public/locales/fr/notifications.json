@@ -1,0 +1,66 @@
+{
+    "export": {
+        "warnings": {
+            "exportMethodFail": {
+                "heading": "Sélectionnez une méthode valide",
+                "content": "Veuillez sélectionner l'une des méthodes d'exportation valides"
+            }
+        },
+        "errors": {
+            "heading": "Erreur lors de l'exportation",
+            "content": {
+                "failConnectServer": "Échec de la connexion au serveur",
+                "httpError": "Erreur HTTP ! Statut :",
+                "wordError": "Erreur lors de l'exportation du document Word",
+                "unexpectedError": "Une erreur inattendue est survenue"
+            }
+        },
+        "successes": {
+            "fileGeneration": {
+                "heading": "Succès",
+                "content": "Généré"
+            }
+        }
+    },
+    "main": {
+        "warnings": {
+            "heading": "Avertissement",
+            "content": {
+                "invalidTaskName": "Vous devez entrer un nom de tâche valide pour ajouter une tâche",
+                "importFile": "En important un fichier, vous perdrez toute votre progression actuelle"
+            }
+        },
+        "infos": {
+            "editMode": {
+                "heading": "Mode Édition",
+                "content": "Pour enregistrer les modifications, cliquez à nouveau sur le bouton d'édition"
+            }
+        },
+        "successes": {
+            "editMode": {
+                "heading": "Succès",
+                "content": "Informations sur la tâche mises à jour"
+            }
+        }
+    },
+     "login": {
+    "successes": {
+      "loggedIn": {
+        "heading": "Bienvenue",
+        "content": "Connecté avec succès à"
+      }
+    },
+    "errors": {
+      "logInFail": {
+        "heading": "La tentative de connexion a échoué",
+        "content": {
+          "auth/user-not-found": "Aucun compte trouvé avec cet e-mail",
+          "auth/wrong-password": "Mot de passe incorrect. Veuillez réessayer",
+          "auth/invalid-email": "Veuillez saisir une adresse e-mail valide",
+          "auth/too-many-requests": "Trop de tentatives. Veuillez réessayer plus tard",
+          "default": "Une erreur inattendue est survenue. Veuillez réessayer"
+        }
+      }
+    }
+  }
+}

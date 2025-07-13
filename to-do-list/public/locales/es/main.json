@@ -1,0 +1,24 @@
+{
+  "title": "Generador de Lista de Tareas",
+  "main_heading": "Lista de Tareas",
+    "login_panel": {
+    "buttonTooltip": "Iniciar Sesión",
+    "welcomeMessage": "Bienvenido",
+    "logOutButton": "Cerrar Sesión"
+  },
+  "list_backdrop": {
+    "task_name": "Introduce una tarea",
+    "add_button": "Añadir",
+    "task_desc": "Introduce una descripción para la tarea (Opcional)",
+    "export_button": "Exportar",
+    "delete_button": "Borrar Tareas",
+    "import_button": "Importar"
+  },
+  "list": {
+    "no_tasks": "No hay tareas disponibles. ¡Añade una arriba!",
+    "desc_trigger_text": {
+      "show": "Mostrar Descripción",
+      "hide": "Ocultar Descripción"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+    "export": {
+        "exportMain": {
+            "heading": "Export To-do List",
+            "content": {
+                "method": {
+                    "label": "Method",
+                    "values": {
+                        "unselected": "Select a method",
+                        "json": "Export as a JSON file (Compatible with importing your list here)",
+                        "word": "Export as a Word Document",
+                        "html": "Export as a Web Page (.html)",
+                        "pdf": "Export as a PDF",
+                        "text": "Export as Text"
+                    }
+                },
+                "fileName": {
+                    "label": "File Name (Optional)"
+                },
+                "listName": {
+                    "label": "List Name (Optional)"
+                },
+                "listCompletionDate": {
+                    "label": "List Completion Date (Optional)"
+                },
+                "documentTheme": {
+                    "label": "Document Theme"
+                }
+            },
+            "footer": {
+                "exportButton": "Export",
+                "exportProgress": {
+                    "genPreview": "Generating preview document",
+                    "genFinal": "Generating final document",
+                    "genHTML": "Generating HTML document",
+                    "genTXT": "Generating text document"
+                }
+            }
+        },
+        "exportPreview": {
+            "heading": "Document Preview",
+            "footer": {
+                "downloadButton": "Download"
+            }
+        }
+    },
+    "rUSure": {
+        "heading": "Are you sure?",
+        "content": "If your progress is important please export the tasks as a JSON file to import later again here..",
+        "footer": {
+            "noButton": "No",
+            "yesButton": "Yes"
+        }
+    },
+    "logIn": {
+        "heading": "Log in to an account",
+        "content": {
+            "email": {
+                "label": "Email:",
+                "placeholder": "Enter the email"
+            },
+            "password": {
+                "label": "Password:",
+                "placeholder": "Enter the password"
+            }
+        },
+        "footer": {
+            "logInButton": "Log In"
+        }
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "export": {
+        "warnings": {
+            "exportMethodFail": {
+                "heading": "Selecciona un método válido",
+                "content": "Por favor, selecciona uno de los métodos de exportación válidos"
+            }
+        },
+        "errors": {
+            "heading": "Error al exportar",
+            "content": {
+                "failConnectServer": "Fallo al conectar con el servidor",
+                "httpError": "¡Error HTTP!",
+                "wordError": "Error al exportar documento Word",
+                "unexpectedError": "Ocurrió un error inesperado"
+            }
+        },
+        "successes": {
+            "fileGeneration": {
+                "heading": "Éxito",
+                "content": "Generado"
+            }
+        }
+    },
+    "main": {
+        "warnings": {
+            "heading": "Advertencia",
+            "content": {
+                "invalidTaskName": "Debes introducir un nombre de tarea válido para añadir una tarea",
+                "importFile": "Al importar un archivo, perderás todo tu progreso actual"
+            }
+        },
+        "infos": {
+            "editMode": {
+                "heading": "Modo de Edición",
+                "content": "Para guardar los cambios, haz clic de nuevo en el botón de editar"
+            }
+        },
+        "successes": {
+            "editMode": {
+                "heading": "Éxito",
+                "content": "Información de la tarea actualizada"
+            }
+        }
+    },
+      "login": {
+    "successes": {
+      "loggedIn": {
+        "heading": "Bienvenido",
+        "content": "Sesión iniciada correctamente en"
+      }
+    },
+    "errors": {
+      "logInFail": {
+        "heading": "El intento de inicio de sesión ha fallado",
+        "content": {
+          "auth/user-not-found": "No se ha encontrado ninguna cuenta con este correo electrónico",
+          "auth/wrong-password": "Contraseña incorrecta. Por favor, inténtelo de nuevo",
+          "auth/invalid-email": "Por favor, introduzca una dirección de correo electrónico válida",
+          "auth/too-many-requests": "Demasiados intentos. Por favor, inténtelo de nuevo más tarde",
+          "default": "Ha ocurrido un error inesperado. Por favor, inténtelo de nuevo"
+        }
+      }
+    }
+  }
+}

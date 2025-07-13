@@ -1,0 +1,289 @@
+/* Custom font imports (Some are deprecated)*/
+/* Font Inter */
+/* Defines the standard Inter font */
+@font-face {
+  font-family: "Nunito";
+  src: url("/src/assets/typography/fonts/Nunito/Nunito-VariableFont_wght.ttf")
+    format("truetype");
+  font-style: normal;
+}
+
+/* Defines the italic Inter font */
+@font-face {
+  font-family: "Nunito";
+  src: url("/src/assets/typography/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-style: italic;
+}
+
+/* Main Root Styles and global variables for easier integration of custom style for this app */
+:root {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(180, 180, 180, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --input-padding-y: 0.4rem;
+  --input-padding-x: 0.7rem;
+  --input-border-radius: 0.5rem;
+  --input-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.41);
+  height: 100%; /* Make the container take full viewport height */
+}
+/* Text Heading Color */
+.text-heading {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+/* Main html and body styles */
+html,
+body {
+  padding: 0;
+  height: 100%; /* Important: html and body must have 100% height */
+  margin: 0;
+}
+
+/* Base element styles */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* Buttons */
+
+button {
+  border: none;
+  background-color: transparent;
+  font-size: 0.9rem;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+  padding-left: var(--input-padding-x);
+  padding-right: var(--input-padding-x);
+  transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  color: white;
+  box-shadow: var(--input-shadow);
+  -webkit-box-shadow: var(--input-shadow);
+  -moz-box-shadow: var(--input-shadow);
+  border-radius: var(--input-border-radius);
+}
+
+/* Inputs */
+
+input {
+  border: none;
+  font-size: 0.9rem;
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+  padding-left: var(--input-padding-x);
+  padding-right: var(--input-padding-x);
+  font-family: inherit;
+  background-color: #383838;
+  transition-duration: 0.1s;
+  transition-property: background-color;
+  border-radius: 0px;
+  color: white;
+  box-shadow: var(--input-shadow);
+  -webkit-box-shadow: var(--input-shadow);
+  -moz-box-shadow: var(--input-shadow);
+  border-radius: var(--input-border-radius);
+}
+
+input:focus {
+  outline: none;
+  background-color: #494949;
+}
+
+textarea {
+  resize: none !important;
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+  padding-left: var(--input-padding-x);
+  padding-right: var(--input-padding-x);
+  outline-width: 0px !important;
+  border: none !important;
+  font-family: inherit;
+  background-color: #383838;
+  transition-duration: 0.1s;
+  transition-property: background-color;
+  border-radius: var(--input-border-radius);
+}
+
+textarea:read-write {
+  box-shadow: var(--input-shadow);
+  -webkit-box-shadow: var(--input-shadow);
+  -moz-box-shadow: var(--input-shadow);
+}
+
+textarea:focus:read-write {
+  outline: none;
+  background-color: #303030;
+  background-color: #494949;
+}
+
+select {
+  border-width: 0px !important;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background-color: #383838;
+  transition-duration: 0.1s;
+  transition-property: background-color;
+  color: white;
+  box-shadow: var(--input-shadow);
+  -webkit-box-shadow: var(--input-shadow);
+  -moz-box-shadow: var(--input-shadow);
+  border-radius: var(--input-border-radius);
+}
+
+select:focus {
+  outline: none;
+  border: none;
+  background-color: #494949;
+}
+
+/* Custom Select Component Base Styling */
+
+.select {
+  transition: 0.2s opacity ease-in-out, 0.2s background-color ease-in-out,
+    min-width 0.2s ease-in-out, max-width 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  border-radius: var(--input-border-radius);
+  background-color: transparent;
+  color: white;
+  background-color: #383838;
+  font-size: 0.9rem;
+  --box-shadow: var(--input-shadow);
+}
+
+.select:hover {
+  background-color: #494949;
+}
+
+.select.--selected.--down {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #494949;
+}
+
+.select.--selected.--up {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #494949;
+}
+
+/* Main Toggle Button */
+
+.select .selectToggleButton > svg {
+  transition: fill 0.3s ease-in-out;
+  fill: rgba(180, 180, 180, 0.87);
+}
+
+.select.--selected .selectToggleButton > svg {
+  fill: white;
+}
+
+.select:hover .selectToggleButton > svg {
+  fill: white;
+}
+
+/* Select Header */
+
+.selectHeader {
+  padding-left: var(--input-padding-x);
+  padding-right: var(--input-padding-x);
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+}
+
+/* Select Options */
+
+.selectContent.--down {
+  border-radius: var(--input-border-radius);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  z-index: 1003;
+}
+
+.selectContent.--up {
+  border-radius: var(--input-border-radius);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 1003;
+}
+
+.selectContent.--selected {
+  background-color: #494949;
+}
+
+/* Individual Option Styling */
+
+.selectOption {
+  padding-left: var(--input-padding-x);
+  padding-right: var(--input-padding-x);
+  transition: 0.2s opacity ease-in-out, 0.2s background-color ease-in-out;
+  font-size: 0.9rem;
+  display: grid;
+  justify-content: center;
+}
+
+.selectOption:hover {
+  background-color: #383838;
+  color: white;
+}
+
+/* Prevent the user from selecting some content (This allows the user to select all the important content) */
+
+.list-backdrop * {
+  user-select: none;
+}
+
+.text-heading {
+  user-select: none;
+  margin: 1rem;
+  justify-self: anchor-center;
+  white-space: normal;
+}
+.no-tasks-message {
+  user-select: none;
+}
+
+/* ============================================= */
+/* --- Input Groups --- */
+/* ============================================= */
+/* This is the styling for the input groups to allow for a clean rounded joined button with input with rounded borders */
+.input-group {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--input-shadow);
+  -webkit-box-shadow: var(--input-shadow);
+  -moz-box-shadow: var(--input-shadow);
+  overflow: hidden;
+}
+
+.input-group input {
+  border: none;
+  border-radius: 0;
+  flex-grow: 1;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.input-group button {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}

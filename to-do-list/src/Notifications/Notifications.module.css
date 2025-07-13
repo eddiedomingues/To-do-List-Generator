@@ -1,0 +1,170 @@
+/*
+====================================
+Notification Component Styles
+====================================
+This file is organized to match the component's JSX structure:
+1.  Top-Level Container
+2.  Individual Notification Card
+3.  Card Sections (Icon, Content, Footer)
+4.  Animation States (from react-transition-group)
+*/
+
+/* --- 1. Top-Level Container --- */
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap-reverse;
+  flex-direction: column-reverse;
+  pointer-events: none;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+}
+
+.container > * {
+  transition: position 0.5s ease-in-out;
+}
+
+/* --- 2. Individual Notification Card --- */
+/* I use mainly display:flex for better compatibilty with mobile screens and smaller screens */
+.notification {
+  width: fit-content;
+  height: fit-content;
+  min-width: 20rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  display: none;
+  box-shadow: 0px 1px 13px -3px rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: 0px 1px 13px -3px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 0px 1px 13px -3px rgba(0, 0, 0, 0.41);
+}
+
+/* --- 3. Card Sections (Icon, Content, Footer) --- */
+
+/* Notification Icon */
+.notification-icon {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* Main Content Area */
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  padding-right: 0.5rem;
+  gap: 0.5rem;
+}
+
+.contentContainer > * {
+  text-align: left;
+  align-items: left;
+}
+
+.content-container {
+  pointer-events: initial;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  flex-basis: fit-content;
+  flex-grow: 1;
+}
+
+/* Footer Section & Its Children */
+.footer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  flex-basis: 100%;
+  flex-direction: row;
+  gap: 0px 0px;
+}
+
+.footer-content {
+  flex-grow: 1;
+  flex-basis: 100%;
+  align-content: center;
+  pointer-events: initial;
+  overflow-wrap: anywhere;
+}
+
+/* Close Button */
+.closeContainer {
+  display: flex;
+}
+
+.close-button {
+  padding: 0.4rem;
+  pointer-events: initial;
+  height: 2rem;
+  width: 2rem;
+  display: grid;
+  align-items: center;
+  justify-items: anchor-center;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.close-button:hover {
+  background-color: rgb(71 71 71 / 74%);
+}
+
+.close-button > .close-image {
+  width: 150%;
+  height: 150%;
+  fill: rgba(209, 209, 209, 0.87);
+  transition: fill 0.3s ease;
+}
+
+.close-button:hover:enabled > .close-image {
+  fill: rgba(255, 255, 255, 0.87);
+}
+
+/* --- 4. Animation States --- */
+
+/* State when component is entering (before active class) */
+.notification-enter {
+  opacity: 0;
+  transform: translateX(100%); /* Start below its final position */
+  display: flex;
+}
+
+/* State during entering animation (active) */
+.notification-enter-active {
+  opacity: 1;
+  transform: translateX(0%); /* Move to final position */
+  display: flex;
+}
+
+/* State when component has finished entering */
+.notification-enter-done {
+  opacity: 1;
+  transform: translateX(0%);
+  display: flex;
+}
+
+/* State when component is exiting (before active class) */
+.notification-exit {
+  opacity: 1;
+  transform: translateX(0%);
+  display: flex;
+}
+
+/* State during exiting animation (active) */
+.notification-exit-active {
+  opacity: 0;
+  transform: translateX(100%); /* Move upwards as it fades out */
+  display: flex;
+}

@@ -1,0 +1,1027 @@
+/* ============================================= */
+/* --- Global, Root, and Animation Styles --- */
+/* ============================================= */
+/* Vars */
+
+/* Root and HTML */
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
+}
+
+html {
+  margin-bottom: 0;
+}
+
+/* Keyframe Animations */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes l16 {
+  0% {
+    background-position: -150% 0, -150% 0;
+  }
+  66% {
+    background-position: 250% 0, -150% 0;
+  }
+  100% {
+    background-position: 250% 0, 250% 0;
+  }
+}
+
+/* Animation Application */
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* ============================================= */
+/* --- Main Application Header --- */
+/* ============================================= */
+
+.appHeader {
+  width: 100vw;
+  margin-top: 0.5rem;
+  height: 3.2rem;
+  overflow: visible;
+}
+
+.appHeaderContainer {
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  gap: 0px 0px;
+  grid-template-areas: ". .";
+  justify-items: flex-start;
+  align-items: start;
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr min-content min-content;
+  grid-template-rows: min-content 1fr 1fr;
+  place-content: start;
+}
+
+.appIcon {
+  width: 1.8rem;
+  height: 1.8rem;
+  user-select: none;
+  -webkit-user-drag: none;
+  align-self: flex-start;
+}
+
+.select.languageSelect {
+  height: 100%;
+  margin-right: 0.3rem;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.select.languageSelect:hover {
+  background-color: #383838;
+  box-shadow: var(--input-shadow);
+}
+
+.select.languageSelect.--selected {
+  background-color: #383838;
+  box-shadow: var(--input-shadow);
+}
+
+.selectContent.languageSelect-content.--selected {
+  background-color: #383838;
+}
+
+.languageSelect .selectHeader {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.languageSelect .selectOption {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.mainAppHeading {
+  /* Define the background as a linear gradient. */
+  background: RGB(85 214 151);
+  background-image: linear-gradient(
+    45deg,
+    rgba(85, 214, 151, 1) 0%,
+    rgba(25, 166, 239, 1) 41%,
+    rgba(140, 219, 100, 1) 84%,
+    rgba(246, 203, 84, 1) 100%
+  );
+
+  /* Clip the background to the shape of the text. */
+  -webkit-background-clip: text; /* For Safari and Chrome */
+  background-clip: text;
+
+  /* Make the actual text color transparent. */
+  color: transparent;
+  font-weight: 700;
+}
+
+/* ============================================= */
+/* --- To-Do List Component --- */
+/* ============================================= */
+
+/* Main Layout */
+.to-do-list {
+  justify-content: center;
+  overflow: hidden;
+  display: grid;
+  height: 100%;
+  grid-template-rows: min-content min-content 1fr;
+  gap: 0.5rem;
+}
+
+/* Control Content */
+.content-container {
+  padding-top: 1rem;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Input Area & Controls */
+.list-backdrop {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: fit-content;
+}
+.list-backdrop textarea {
+  font-size: 0.9rem;
+}
+#buttonsFunctionsContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+#task-name-group {
+  width: 18rem;
+}
+
+#task-desc {
+  box-sizing: border-box;
+  width: 20rem;
+  height: 7rem;
+}
+
+.add-button {
+  background-color: rgb(3 153 16 / 53%);
+  width: 5rem;
+  font-size: 0.9rem !important;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  box-sizing: content-box;
+}
+.add-button:hover:enabled {
+  background-color: rgba(3, 153, 16, 0.397);
+}
+
+/* Task List */
+.scrollable-list-wrapper-grid {
+  overflow-y: auto;
+  max-width: 90%;
+  transform: translateX(5%);
+}
+
+.list-container {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  overflow-y: hidden;
+  height: fit-content;
+  margin-top: 0;
+}
+
+.list-container li {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  align-items: center;
+}
+.list-container li .text {
+  margin-right: 0.2rem;
+}
+
+.list-container button {
+  padding: 0;
+  margin-left: 0.2rem;
+  width: fit-content;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+/* ============================================= */
+/* --- List Item Component --- */
+/* ============================================= */
+
+/* Item Container */
+.to-do-item {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  opacity: 1;
+  max-height: fit-content;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: opacity 0.2s ease-out, max-height 0.2s ease-out,
+    padding 0.2s ease-out;
+}
+.to-do-item:nth-child(even) {
+  background-color: rgb(105 105 105 / 22%);
+}
+.to-do-item.deleting {
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+/* Item Content Layout */
+.to-do-item-content {
+  width: 100%;
+  flex-wrap: wrap;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: min-content min-content;
+  gap: 0px 0px;
+}
+
+.to-do-item-topContainer {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: minmax(min-content, 1fr) min-content;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". .";
+}
+
+.name-container {
+  width: 100%;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: min-content auto;
+  gap: 0px 0px;
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+
+/* Item Text Content */
+.task-number {
+  font-size: 0.8rem;
+}
+
+.task-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: normal;
+  text-wrap-mode: wrap;
+  padding: 0.2rem !important;
+  margin: 0 !important;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.task-text:read-only {
+  background-color: transparent;
+}
+.task-text:read-write {
+  background-color: #91919138;
+}
+
+/* Item Description */
+.desc {
+  justify-content: center;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-out;
+  max-height: 50rem;
+}
+.desc.hidden {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.desc-text {
+  font-size: 0.8rem;
+  font-weight: lighter;
+  font-style: italic;
+  margin: 0.4rem;
+  white-space: pre-wrap;
+  background-color: transparent;
+  width: fit-content;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  color: inherit;
+}
+.desc-text:read-only {
+  background-color: transparent;
+}
+.desc-text:read-write {
+  color: white;
+  background-color: #91919138;
+}
+
+.task-desc-container {
+  display: grid;
+  grid-auto-columns: auto;
+}
+
+/* Item Buttons & Interactions */
+.buttons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.buttons button {
+  display: flex;
+  align-items: center;
+}
+.buttons button:hover:enabled {
+  background-color: rgba(255, 255, 255, 0.089);
+}
+.buttons button:disabled svg {
+  fill: rgb(82, 82, 82);
+}
+.buttons button:disabled:hover {
+  cursor: default;
+}
+
+.expand-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.expand-button {
+  order: 2;
+}
+.expand-button:hover:enabled + .desc-triggerContainer {
+  opacity: 1 !important;
+}
+
+.desc-triggerContainer {
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  flex-direction: row-reverse;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.desc-trigger-text {
+  background-color: #383838;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  font-weight: lighter;
+  font-style: italic;
+  user-select: none;
+  text-align: right;
+  color: rgb(255 255 255 / 87%) !important;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* ============================================= */
+/* --- Generic Button Styles --- */
+/* ============================================= */
+
+.genericButton {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* --- Delete Button --- */
+.buttons button {
+  background-color: transparent;
+}
+button.delete-button:hover:enabled {
+  background-color: rgb(71 71 71 / 74%);
+  color: rgba(255, 128, 128, 0.87);
+}
+.delete-button:disabled {
+  color: rgba(146, 146, 146, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  cursor: default;
+}
+.delete-image {
+  transition: fill 0.2s;
+  width: 1.5rem;
+  height: 1.5rem;
+  pointer-events: none;
+}
+.delete-button:hover:enabled > .delete-image {
+  fill: rgba(255, 128, 128, 0.87);
+}
+.delete-button:disabled .delete-image {
+  fill: rgba(146, 146, 146, 0.87);
+}
+
+/* --- Import Button --- */
+.import-button {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  font-size: 0.9rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.import-button:hover:enabled {
+  background-color: rgb(71 71 71 / 74%);
+  color: rgba(128, 162, 255, 0.87);
+}
+.import-button:disabled {
+  color: rgba(146, 146, 146, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  cursor: default;
+}
+.import-image {
+  transition: fill 0.2s;
+  width: 1.5rem;
+  height: 1.5rem;
+  pointer-events: none;
+}
+.import-button:hover:enabled > .import-image {
+  fill: rgba(128, 162, 255, 0.87);
+}
+.import-button:disabled .import-image {
+  fill: rgba(146, 146, 146, 0.87);
+}
+.hiddenImport {
+  display: none;
+}
+
+/* --- Export Button --- */
+.export-button {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+.export-button:hover:enabled {
+  background-color: rgb(71 71 71 / 74%);
+  color: rgba(255, 211, 128, 0.87);
+}
+.export-button:disabled {
+  color: rgba(146, 146, 146, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  cursor: default;
+}
+.export-image {
+  transition: fill 0.2s;
+  width: 1.5rem;
+  height: 1.5rem;
+  pointer-events: none;
+  fill: rgba(209, 209, 209, 0.87);
+}
+.export-button:hover:enabled > .export-image {
+  fill: rgba(255, 211, 128, 0.87);
+}
+.export-button:disabled .export-image {
+  fill: rgba(146, 146, 146, 0.87);
+}
+
+/* --- Button Images --- */
+.add-image,
+.desc-image,
+.task-image {
+  transition-property: fill;
+  transition-duration: 0.2s;
+}
+.add-image:hover,
+.desc-image:hover,
+.task-image:hover {
+  fill: rgba(255, 255, 255, 0.87);
+}
+.export-container .delete-image {
+  transition-property: fill;
+  transition-duration: 0.2s;
+}
+.export-container .delete-image:hover {
+  fill: rgba(255, 128, 128, 0.87);
+}
+
+/* ============================================= */
+/* --- Window / Modal Components --- */
+/* ============================================= */
+/* Base Style */
+.appWindow {
+  border-radius: var(--input-border-radius);
+}
+
+/* Window Sizing */
+.export-window {
+  width: 35rem;
+  height: 25rem;
+}
+
+.preview-window {
+  width: 70%;
+  height: 95%;
+}
+
+.delete-window {
+  max-width: 70%;
+  max-height: 95%;
+}
+
+/* Log In Window */
+.logInWindow {
+  width: fit-content;
+}
+.logInWindow-Content {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1em;
+}
+
+.logInWindow-Content > div {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.logInWindow-button {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  width: 10rem;
+  font-size: 1rem !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  align-items: center;
+  height: 2rem;
+}
+.logInWindow-button:hover {
+  background-color: rgba(149, 255, 237, 0.87);
+  color: rgba(31, 31, 31, 0.74);
+}
+
+/* --- Export Window --- */
+.export-form {
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1em;
+}
+.export-form > * {
+  grid-template-rows: minmax(0, min-content);
+  grid-template-columns: min-content minmax(0, max-content);
+  display: grid;
+  gap: 0.5rem;
+}
+.export-form > * > * {
+  min-width: 0;
+}
+.export-form > * > label {
+  white-space: nowrap;
+  align-content: center;
+}
+.export-theme.disabled {
+  max-height: 0;
+}
+
+.export-btn {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  width: 10rem;
+  font-size: 1rem !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  align-items: center;
+  height: 2rem;
+}
+.export-btn:hover:enabled {
+  background-color: rgba(255, 211, 128, 0.87);
+  color: rgba(31, 31, 31, 0.74);
+}
+
+/* --- Delete Confirmation Window --- */
+.rUSure-footer {
+  gap: 1rem;
+}
+
+.rUSure-yes-btn {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  width: 10rem;
+  font-size: 1rem !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  align-items: center;
+  height: 2rem;
+}
+.rUSure-yes-btn:hover:enabled {
+  background-color: rgba(255, 128, 128, 0.87);
+  color: rgba(31, 31, 31, 0.74);
+}
+
+.rUSure-no-btn {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  width: 10rem;
+  font-size: 1rem !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  align-items: center;
+  height: 2rem;
+}
+.rUSure-no-btn:hover:enabled {
+  background-color: rgba(196, 196, 196, 0.43);
+}
+
+/* --- Document Preview Window --- */
+.docPreviewContainer {
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+}
+.docPreview {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.download-btn {
+  color: rgba(209, 209, 209, 0.87);
+  background-color: rgb(71 71 71 / 43%);
+  width: 10rem;
+  font-size: 1rem !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  align-items: center;
+  height: 2rem;
+}
+.download-btn:hover:enabled {
+  background-color: rgba(149, 255, 158, 0.87);
+  color: rgba(31, 31, 31, 0.74);
+}
+
+/* ============================================= */
+/* --- Loader --- */
+/* ============================================= */
+
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+}
+.loaderContainer * {
+  text-align: center;
+}
+.loader {
+  height: 0.3rem;
+  width: 10rem;
+  --c: no-repeat linear-gradient(rgba(255, 211, 128, 0.87) 0 0);
+  background: var(--c), var(--c), rgb(71 71 71 / 43%);
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
+}
+
+/* ============================================= */
+/* --- Notifications --- */
+/* ============================================= */
+
+.appNotification {
+  border-radius: var(--input-border-radius);
+  margin-right: 1rem;
+}
+
+.notificationHeading {
+  font-family: inherit;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 1.2rem;
+}
+
+.notificationContent {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.notification-info,
+.notification-warning,
+.notification-error {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* ============================================= */
+/* --- Utility & Helper Classes --- */
+/* ============================================= */
+
+.card {
+  padding: 2em;
+}
+.read-the-docs {
+  color: #888;
+}
+.flex-break {
+  flex-basis: 100%;
+}
+.text-white {
+  color: white;
+}
+.text {
+  width: fit-content;
+}
+.hidden {
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 0;
+}
+.text-hidden {
+  color: transparent;
+  transition: color 0.3s ease-in-out;
+  margin: 0rem !important;
+}
+.no-pointer {
+  pointer-events: none;
+}
+.no-pointer.all * {
+  pointer-events: none;
+}
+.no-select {
+  user-select: none;
+}
+.no-select.all * {
+  user-select: none;
+}
+.autoresizeTextArea {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  resize: none;
+  overflow: hidden;
+}
+.task-autoTextareaWrapper {
+  min-width: 0;
+  display: flex;
+}
+
+/* ============================================= */
+/* --- Media Queries & Responsive Design --- */
+/* ============================================= */
+
+/* IPads, Big Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .preview-window {
+    width: 80%;
+    height: 90%;
+  }
+  .export-window {
+    width: 80%;
+    height: 75%;
+  }
+  .delete-window {
+    height: 60%;
+    width: 80%;
+  }
+  .logInWindow {
+    width: 80%;
+  }
+  setOptionsPosition {
+    width: 70%;
+  }
+  #task-name-group {
+    width: 80%;
+  }
+  #task-desc {
+    width: 80%;
+  }
+  .add-button {
+    flex-grow: 0.2;
+  }
+  #buttonsFunctionsContainer {
+    /* flex: 1; */
+    gap: 0;
+    width: 80%;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  #buttonsFunctionsContainer > * {
+    flex-grow: 0.2;
+  }
+
+  /* Document Preview */
+  .docPreviewContainer.pdf {
+    position: relative;
+    overflow: hidden;
+  }
+  .docPreviewContainer.pdf > .docPreview {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .docPreviewContainer.html {
+    overflow: auto;
+  }
+  .export-window-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .export-form > * {
+    display: grid;
+    gap: 0.5rem;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
+  }
+  .export-form > * > label {
+    text-align: left;
+  }
+
+  .export-form .select {
+    max-width: 100%;
+  }
+
+  /* Typography */
+  .text-heading {
+    font-size: 1.4rem;
+  }
+  .mainAppHeading {
+    font-size: 3.3rem;
+  }
+
+  /* Notifications */
+  .appNotification {
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+    min-width: 0 !important;
+    margin-right: 0.5rem !important;
+    max-width: 80vw;
+  }
+
+  .appNotification .appNotification-iconContainer {
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+  }
+
+  .appNotification .appNotification-contentContainer {
+    gap: 0.3rem;
+    padding-right: 0.5rem;
+  }
+
+  .appNotification .appNotification-closeButton {
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0.3rem;
+  }
+
+  .notificationHeading {
+    font-size: 1.3rem;
+  }
+
+  .notificationContent {
+    font-size: 0.9rem;
+  }
+
+  .notification-info,
+  .notification-warning,
+  .notification-error {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Smaller Phones (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .preview-window {
+    width: 85%;
+    height: 93%;
+  }
+  .export-window {
+    width: 80%;
+    height: 85%;
+  }
+  .delete-window {
+    height: 50%;
+    width: 80%;
+  }
+  #task-name-group {
+    width: 90%;
+  }
+  #task-desc {
+    width: 90%;
+  }
+  .add-button {
+    flex-grow: 1;
+  }
+  #buttonsFunctionsContainer {
+    flex: 0 1 auto;
+    gap: 0;
+    width: 90%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  /* Typography */
+  .text-heading {
+    font-size: 1.7rem;
+  }
+
+  .mainAppHeading {
+    font-size: 2.4rem;
+  }
+
+  /* Notifications */
+  .appNotification {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+    min-width: 0 !important;
+    margin-right: 0.3rem !important;
+  }
+
+  .appNotification .appNotification-iconContainer {
+    padding-right: 0.3rem;
+    padding-left: 0.2rem;
+  }
+
+  .appNotification .appNotification-contentContainer {
+    gap: 0.2rem;
+    padding-right: 0.3rem;
+  }
+
+  .appNotification .appNotification-closeButton {
+    width: 1.4rem;
+    height: 1.4rem;
+    padding: 0.25rem;
+  }
+
+  .notificationHeading {
+    font-size: 1.1rem;
+  }
+
+  .notificationContent {
+    font-size: 0.8rem;
+  }
+
+  .notification-info,
+  .notification-warning,
+  .notification-error {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
