@@ -16,7 +16,7 @@ This is a portfolio project to demonstrate my abilities.
 
 ## Demonstration
 
-(To-Do List Generator Web App)[https://to-do-list-generator.web.app/]
+- [To-Do List Generator Web App](https://to-do-list-generator.web.app/)
 
 ## Features
 
