@@ -20,15 +20,21 @@ import SuccessImage from './success.svg?react';
 
 function NotificationsManager() {
      // Notification Functions
+     // Single variable for more readable code
+
+        const notificationClasses = {
+            className: "appNotification",
+                    closeButtonClassName: "appNotification-closeButton",
+                    iconContainerClassName: "appNotification-iconContainer",
+                    contentContainerClassName: "appNotification-contentContainer",
+                    timerClassName: "appNotification-timer"
+        }
         const info = useCallback((heading, text) => {
                 window.addAppNotification({footer: <h3 className="notificationHeading">{heading}</h3>,
                     content: <><span className="notificationContent">{text}</span></>,
                     icon: <InfoImage className={"notification-info"}></InfoImage>,
                     autoDismiss: true,
-                    className: "appNotification",
-                    closeButtonClassName: "appNotification-closeButton",
-                    iconContainerClassName: "appNotification-iconContainer",
-                    contentContainerClassName: "appNotification-contentContainer"
+                    ...notificationClasses
                 });
         }, [window.addAppNotification])
 
@@ -38,10 +44,8 @@ function NotificationsManager() {
                     icon: <WarningImage className={"notification-warning"}></WarningImage>,
                     backgroundColor: "rgba(105, 86, 0, 0.22)",
                     autoDismiss: true,
-                    className: "appNotification",
-                    closeButtonClassName: "appNotification-closeButton",
-                    iconContainerClassName: "appNotification-iconContainer",
-                    contentContainerClassName: "appNotification-contentContainer"
+                    autoDismissTimer: 5000,
+                    ...notificationClasses
                 });
         }, [window.addAppNotification])
 
@@ -52,10 +56,7 @@ function NotificationsManager() {
                     backgroundColor: "rgba(105, 0, 0, 0.22)",
                     autoDismiss: true,
                     autoDismissTimer: 10000,
-                    className: "appNotification",
-                    closeButtonClassName: "appNotification-closeButton",
-                    iconContainerClassName: "appNotification-iconContainer",
-                    contentContainerClassName: "appNotification-contentContainer"
+                    ...notificationClasses
                 });
         }, [window.addAppNotification])
                 const success = useCallback((heading, text) => {
@@ -65,10 +66,7 @@ function NotificationsManager() {
                     backgroundColor: "rgba(0, 105, 0, 0.22)",
                     autoDismiss: true,
                     autoDismissTimer: 7000,
-                    className: "appNotification",
-                    closeButtonClassName: "appNotification-closeButton",
-                    iconContainerClassName: "appNotification-iconContainer",
-                    contentContainerClassName: "appNotification-contentContainer"
+                    ...notificationClasses
                 });
         }, [window.addAppNotification])
 

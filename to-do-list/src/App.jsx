@@ -31,6 +31,9 @@ import LogInPanel from "./LogInPanel/LogInPanel.jsx";
 import Notifications from "./Notifications/Notifications.jsx";
 import NotificationsManager from "./NotificationsManager/NotificationsManager.jsx";
 
+// Custom Hooks
+import useMediaQuery from './CustomFunctions/useMediaQuery.jsx';
+
 // Firebase
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -66,6 +69,9 @@ function AppContent() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const logginPanelRef = useRef(null);
+
+  // Detect if the device is on mobile
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   // Translation Namespace References
   const { t: notificationsT } = useTranslation("notifications");
@@ -197,7 +203,7 @@ function AppContent() {
           </button>
         </Window.Footer>
       </Window>
-      <Notifications zIndex={1002}></Notifications>
+      <Notifications maxNotifications={isMobile ? 2 : undefined} id="appNotificationsContainer" zIndex={1002}></Notifications>
       <NotificationsManager />
       <DynamicTitle />
       <div className="appHeader">

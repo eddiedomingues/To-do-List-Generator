@@ -7,6 +7,7 @@ This file is organized to match the component's JSX structure:
 2.  Individual Notification Card
 3.  Card Sections (Icon, Content, Footer)
 4.  Animation States (from react-transition-group)
+5.  Loader (For autodismiss notifications)
 */
 
 /* --- 1. Top-Level Container --- */
@@ -23,6 +24,7 @@ This file is organized to match the component's JSX structure:
   overflow: hidden;
   left: 0;
   top: 0;
+  box-sizing: border-box;
 }
 
 .container > * {
@@ -111,10 +113,12 @@ This file is organized to match the component's JSX structure:
   width: 2rem;
   display: grid;
   align-items: center;
-  justify-items: anchor-center;
+  justify-items: center;
+  place-self: center;
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  align-self: center;
 }
 
 .close-button:hover {
@@ -167,4 +171,53 @@ This file is organized to match the component's JSX structure:
   opacity: 0;
   transform: translateX(100%); /* Move upwards as it fades out */
   display: flex;
+}
+
+.loaderContainer {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  position: relative;
+  height: 1.8rem;
+  place-self: center;
+}
+
+.loader {
+  width: 80%;
+  height: 80%;
+  transform: rotate(-90deg); /* Rotate the whole SVG to start from the top */
+}
+
+.loader-circle {
+  fill: transparent;
+  stroke-width: 0.25rem;
+}
+
+.loader-track {
+  stroke: transparent; /* As per your CSS */
+}
+
+.loader-path {
+  stroke: #fff;
+
+  /* These will be set by JavaScript */
+  stroke-dasharray: var(--circumference);
+  stroke-dashoffset: var(--circumference);
+
+  /* Animation runs once, takes the time from --time variable (or 1.5s),
+      and stays at its final state.
+    */
+  animation: draw-circle var(--time, 1.5s) forwards;
+}
+
+@keyframes draw-circle {
+  /* At the start, the circle is not drawn */
+  from {
+    stroke-dashoffset: var(--circumference);
+  }
+  /* At the end, the offset is 0, so the circle is fully drawn */
+  to {
+    stroke-dashoffset: 0;
+  }
 }

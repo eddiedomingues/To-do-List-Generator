@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import styles from './Notifications.module.css';
 import CloseImage from './close.svg?react';
+import { useLayoutEffect } from 'react';
 
 /**
  * A single notification component responsible for its own appearance,
@@ -16,11 +17,13 @@ import CloseImage from './close.svg?react';
  * @param {function} props.onDismiss - Callback function to dismiss the notification.
  * @param {boolean} props.in - Prop from TransitionGroup to control the animation state.
  */
-const Notification = ({ notification, onDismiss, in: inProp, className, closeButtonClassName, iconContainerClassName, contentContainerClassName}) => {
+const Notification = ({ notification, onDismiss, in: inProp, className, closeButtonClassName, iconContainerClassName, contentContainerClassName, timerClassName}) => {
     // --- REFS ---
 
     // A ref for the CSS Transition library
     const nodeRef = useRef(null);
+    const loaderRef = useRef(null);
+    const loaderPathRef = useRef(null);
 
     // --- SIDE EFFECTS ---
 
@@ -37,6 +40,15 @@ const Notification = ({ notification, onDismiss, in: inProp, className, closeBut
             return () => clearTimeout(timer);
         }
     }, [notification.id, onDismiss]);
+
+    useLayoutEffect(() => {
+        if (loaderRef && loaderPathRef) {
+            if (loaderRef.current && loaderPathRef.current) {
+                const circumference = loaderPathRef.current.getTotalLength();
+                loaderRef.current.style.setProperty('--circumference', circumference);
+            }
+        }
+    }, [])
 
     // --- HANDLERS ---
 
@@ -56,7 +68,7 @@ const Notification = ({ notification, onDismiss, in: inProp, className, closeBut
     const closeButtonClasses = `${styles['close-button']} ${closeButtonClassName ? closeButtonClassName : ""}`
     const iconClasses = `${styles['notification-icon']} ${iconContainerClassName ? iconContainerClassName : ""}`
     const contentClasses = `${styles['contentContainer']} ${contentContainerClassName ? contentContainerClassName : ""}`
-    
+    const timerClasses = `${styles['loaderContainer']} ${timerClassName ? timerClassName : ""}`
     // --- RENDER ---
 
     return (
@@ -83,6 +95,36 @@ const Notification = ({ notification, onDismiss, in: inProp, className, closeBut
                     <div className={styles['footer']}>
                         <div className={styles['footer-content']}>{notification.footer}</div>
                         <div className={styles['closeContainer']}>
+                            {
+                                notification.autoDismiss ?
+                                <div className={timerClasses}>
+                                  <svg 
+    ref={loaderRef} 
+    className={styles['loader']} 
+    style={{"--time": `${notification.autoDismissTimer ? notification.autoDismissTimer : 5000}ms`}} 
+    viewBox="0 0 48 48"
+>
+    {/* Add cx, cy, and r to the track circle */}
+    <circle 
+        className={`${styles["loader-circle"]} ${styles["loader-track"]}`}
+        cx="24" 
+        cy="24" 
+        r="20"
+    ></circle>
+
+    {/* Add the same attributes to the path circle */}
+    <circle 
+        ref={loaderPathRef} 
+        className={`${styles["loader-circle"]} ${styles["loader-path"]}`}
+        cx="24" 
+        cy="24" 
+        r="20"
+    ></circle>
+</svg>
+</div>
+                                :
+                                []
+                            }
                             <button onClick={handleCloseClick} className={closeButtonClasses}>
                                 <CloseImage className={styles['close-image']} />
                             </button>

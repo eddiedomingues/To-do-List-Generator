@@ -905,6 +905,13 @@ button.delete-button:hover:enabled {
   }
 
   /* Notifications */
+  /* Change the notifications locations to the top */
+  #appNotificationsContainer {
+    padding-top: 1rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
   .appNotification {
     padding-top: 0.4rem !important;
     padding-bottom: 0.4rem !important;
@@ -927,6 +934,10 @@ button.delete-button:hover:enabled {
     width: 1.8rem;
     height: 1.8rem;
     padding: 0.3rem;
+  }
+  .appNotification .appNotification-timer {
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .notificationHeading {
@@ -1008,6 +1019,10 @@ button.delete-button:hover:enabled {
     width: 1.4rem;
     height: 1.4rem;
     padding: 0.25rem;
+  }
+  .appNotification .appNotification-timer {
+    width: 1.4rem;
+    height: 1.4rem;
   }
 
   .notificationHeading {

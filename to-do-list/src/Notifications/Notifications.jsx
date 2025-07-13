@@ -18,7 +18,7 @@ import styles from './Notifications.module.css';
  * @param {object} props - The component props.
  * @param {number|string} props.zIndex - The z-index for the notification container.
  */
-const Notifications = ({ zIndex }) => {
+const Notifications = ({ zIndex, className, id, maxNotifications}) => {
     // --- STATE MANAGEMENT ---
 
     // `notifications` holds the array of notification objects to be displayed.
@@ -57,6 +57,25 @@ const Notifications = ({ zIndex }) => {
         );
     }, []); // Empty dependency array means this function is created only once.
 
+        // Handling the dismissal of notifications
+    useEffect(() => {
+        // Check if the prop of "maxNotifications" exists
+        if (maxNotifications) {
+            // Check if the number of notifications exceeds the limit
+            if (maxNotifications < notifications.length) {
+                // Calculate the number of notifications to dismiss
+                // I am doing this to only dismiss the oldest notifications
+                let numToDismiss = notifications.length - maxNotifications;
+                notifications.map((notification, index) => {
+                    if (numToDismiss != 0) {
+                        dismissNotification(notification.id)
+                        numToDismiss --
+                    }
+                })
+            }
+        }
+    }, [maxNotifications, notifications]) // Rerun this every time the notifications change or when the maxNotifications variable changes
+
     // --- SIDE EFFECTS ---
 
     /**
@@ -86,7 +105,7 @@ const Notifications = ({ zIndex }) => {
     // Use createPortal to render the notifications outside the main component tree,
     // directly into the document.body. This is ideal for modals and notifications.
     return createPortal(
-        <div ref={parent} style={containerStyles} className={styles['container']}>
+        <div id={id ? id : ""} ref={parent} style={containerStyles} className={`${styles['container']} ${className ? className : ""}`}>
             <TransitionGroup component={null}>
                 {notifications.map((notification) => (
                     <Notification
@@ -97,6 +116,7 @@ const Notifications = ({ zIndex }) => {
                         closeButtonClassName={notification.closeButtonClassName ? notification.closeButtonClassName : ""}
                         contentContainerClassName={notification.contentContainerClassName ? notification.contentContainerClassName : ""}
                         iconContainerClassName={notification.iconContainerClassName ? notification.iconContainerClassName : ""}
+                        timerClassName={notification.timerClassName}
                     />
                 ))}
             </TransitionGroup>
