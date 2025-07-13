@@ -45,7 +45,7 @@ function NotificationsManager() {
                     icon: <WarningImage className={"notification-warning"}></WarningImage>,
                     backgroundColor: "rgba(105, 86, 0, 0.22)",
                     autoDismiss: true,
-                    autoDismissTimer: 5000,
+                    autoDismissTimer: 10000,
                     ...notificationClasses
                 });
         }, [window.addAppNotification])

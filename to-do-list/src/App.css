@@ -939,6 +939,7 @@ button.delete-button:hover:enabled {
 
   .appNotification .appNotification-closeContainer {
     gap: 0.3rem;
+    padding-left: 0.3rem;
     padding-bottom: 0.3rem;
   }
 
@@ -1026,6 +1027,7 @@ button.delete-button:hover:enabled {
 
   .appNotification .appNotification-closeContainer {
     gap: 0.2rem;
+    padding-left: 0.2rem;
     padding-bottom: 0.2rem;
   }
 

@@ -104,6 +104,7 @@ This file is organized to match the component's JSX structure:
 /* Close Button */
 .closeContainer {
   padding-bottom: 0.4rem;
+  padding-left: 0.4rem;
   display: flex;
   gap: 0.3rem;
 }
@@ -188,7 +189,6 @@ This file is organized to match the component's JSX structure:
 .loader {
   width: 80%;
   height: 80%;
-  transform: rotate(-90deg); /* Rotate the whole SVG to start from the top */
 }
 
 .loader-circle {
@@ -197,7 +197,7 @@ This file is organized to match the component's JSX structure:
 }
 
 .loader-track {
-  stroke: transparent; /* As per your CSS */
+  stroke: transparent;
 }
 
 .loader-path {
