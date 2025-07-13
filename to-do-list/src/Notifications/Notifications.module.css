@@ -103,11 +103,13 @@ This file is organized to match the component's JSX structure:
 
 /* Close Button */
 .closeContainer {
+  padding-bottom: 0.4rem;
   display: flex;
+  gap: 0.3rem;
 }
 
 .close-button {
-  padding: 0.4rem;
+  padding: 0;
   pointer-events: initial;
   height: 2rem;
   width: 2rem;
@@ -126,8 +128,8 @@ This file is organized to match the component's JSX structure:
 }
 
 .close-button > .close-image {
-  width: 150%;
-  height: 150%;
+  width: 80%;
+  height: 80%;
   fill: rgba(209, 209, 209, 0.87);
   transition: fill 0.3s ease;
 }

@@ -203,7 +203,7 @@ function AppContent() {
           </button>
         </Window.Footer>
       </Window>
-      <Notifications maxNotifications={isMobile ? 2 : undefined} id="appNotificationsContainer" zIndex={1002}></Notifications>
+      <Notifications maxNotifications={isMobile ? 2 : 8} id="appNotificationsContainer" zIndex={1002}></Notifications>
       <NotificationsManager />
       <DynamicTitle />
       <div className="appHeader">

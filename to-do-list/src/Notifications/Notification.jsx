@@ -17,7 +17,7 @@ import { useLayoutEffect } from 'react';
  * @param {function} props.onDismiss - Callback function to dismiss the notification.
  * @param {boolean} props.in - Prop from TransitionGroup to control the animation state.
  */
-const Notification = ({ notification, onDismiss, in: inProp, className, closeButtonClassName, iconContainerClassName, contentContainerClassName, timerClassName}) => {
+const Notification = ({ notification, onDismiss, in: inProp, className, closeButtonClassName, iconContainerClassName, contentContainerClassName, timerClassName, closeContainerClassName}) => {
     // --- REFS ---
 
     // A ref for the CSS Transition library
@@ -69,6 +69,7 @@ const Notification = ({ notification, onDismiss, in: inProp, className, closeBut
     const iconClasses = `${styles['notification-icon']} ${iconContainerClassName ? iconContainerClassName : ""}`
     const contentClasses = `${styles['contentContainer']} ${contentContainerClassName ? contentContainerClassName : ""}`
     const timerClasses = `${styles['loaderContainer']} ${timerClassName ? timerClassName : ""}`
+    const closeContainerClasses = `${styles['closeContainer']} ${closeContainerClassName ? closeContainerClassName : []}`
     // --- RENDER ---
 
     return (
@@ -94,7 +95,7 @@ const Notification = ({ notification, onDismiss, in: inProp, className, closeBut
                 <div className={contentClasses}>
                     <div className={styles['footer']}>
                         <div className={styles['footer-content']}>{notification.footer}</div>
-                        <div className={styles['closeContainer']}>
+                        <div className={closeContainerClasses}>
                             {
                                 notification.autoDismiss ?
                                 <div className={timerClasses}>

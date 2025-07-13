@@ -27,7 +27,8 @@ function NotificationsManager() {
                     closeButtonClassName: "appNotification-closeButton",
                     iconContainerClassName: "appNotification-iconContainer",
                     contentContainerClassName: "appNotification-contentContainer",
-                    timerClassName: "appNotification-timer"
+                    timerClassName: "appNotification-timer",
+                    closeContainerClassName: "appNotification-closeContainer"
         }
         const info = useCallback((heading, text) => {
                 window.addAppNotification({footer: <h3 className="notificationHeading">{heading}</h3>,

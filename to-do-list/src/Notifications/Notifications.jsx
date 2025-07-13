@@ -117,6 +117,7 @@ const Notifications = ({ zIndex, className, id, maxNotifications}) => {
                         contentContainerClassName={notification.contentContainerClassName ? notification.contentContainerClassName : ""}
                         iconContainerClassName={notification.iconContainerClassName ? notification.iconContainerClassName : ""}
                         timerClassName={notification.timerClassName}
+                        closeContainerClassName={notification.closeContainerClassName ? notification.closeContainerClassName : ""}
                     />
                 ))}
             </TransitionGroup>
