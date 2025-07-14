@@ -60,6 +60,10 @@ h1 {
   line-height: 1.1;
 }
 
+svg {
+  object-fit: cover !important;
+}
+
 /* Buttons */
 
 button {
