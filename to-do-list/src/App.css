@@ -55,9 +55,9 @@ html {
 .appHeader {
   width: 100vw;
   margin-top: 0.5rem;
-  height: 2rem;
-  max-height: 2rem;
-  min-height: 2rem;
+  height: fit-content;
+  max-height: fit-content;
+  min-height: fit-content;
 }
 
 .appHeaderContainer {
@@ -70,7 +70,7 @@ html {
   display: grid;
   grid-auto-flow: row;
   grid-auto-rows: 1fr;
-  grid-template-columns: 1fr min-content min-content;
+  grid-template-columns: min-content 1fr min-content min-content;
   grid-template-rows: min-content 1fr 1fr;
   place-content: start;
 }
@@ -118,6 +118,11 @@ html {
 
 .mainAppHeading {
   /* Define the background as a linear gradient. */
+  font-size: 1.2rem !important;
+  overflow: hidden;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  user-select: none;
   background: RGB(85 214 151);
   background-image: linear-gradient(
     45deg,
@@ -133,15 +138,33 @@ html {
 
   /* Make the actual text color transparent. */
   color: transparent;
+  margin: 0;
   font-weight: 700;
   opacity: 1;
-  max-height: 100vh;
-  height: fit-content;
+  max-height: 100%;
+  height: 100%;
+  align-content: center;
+  text-wrap-mode: wrap;
 }
 
 /* ============================================= */
 /* --- To-Do List Component --- */
 /* ============================================= */
+
+/* List Name Header */
+.listNameHeadingContainer {
+  display: flex;
+  justify-content: center;
+}
+.listNameHeading {
+  font-size: 2rem;
+}
+
+/* List Name Input Heading */
+#list_name_heading {
+  text-align: center;
+  box-shadow: none;
+}
 
 /* Main Layout */
 .to-do-list {
@@ -162,7 +185,8 @@ html {
 
 /* Allow for smooth transition */
 /* Base state of the collapsible elements */
-.mainAppHeading,
+
+.listNameHeadingContainer,
 .list-backdrop {
   /* These properties will be animated */
   max-height: 1000px;
@@ -175,7 +199,7 @@ html {
 }
 
 /* Collapsed state with the delayed visibility change */
-.mainAppHeading.collapsed,
+.listNameHeadingContainer.collapsed,
 .list-backdrop.collapsed {
   max-height: 0;
   opacity: 0;
@@ -1037,6 +1061,7 @@ button.delete-button:hover:enabled {
   .mainAppHeading {
     font-size: 3.3rem;
     min-height: fit-content;
+    place-self: center;
   }
 
   /* Notifications */

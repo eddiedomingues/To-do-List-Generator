@@ -7,6 +7,7 @@ function AutoResizeTextarea({ style, value, onChange, ...props }) {
 
   // Resize function
   const resize = () => {
+  
     const textarea = textareaRef.current;
     /* Detects if browser has "fieldSizing" compatibility using my custom cssCompatibility component */
     if (!textarea || window.cssCompatibility.isFieldSizingSupported) return;

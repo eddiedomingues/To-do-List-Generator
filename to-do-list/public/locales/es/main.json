@@ -1,6 +1,5 @@
 {
   "title": "Generador de Lista de Tareas",
-  "main_heading": "Lista de Tareas",
     "login_panel": {
     "buttonTooltip": "Iniciar Sesión",
     "welcomeMessage": "Bienvenido",

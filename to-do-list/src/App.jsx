@@ -18,8 +18,8 @@ import "./App.css";
 // Component Imports
 
 // Main To-Do List
-import ToDoList from "./TodoList/ToDoList.jsx";
 import CssSupportVars from "./CssSupport/CssSupport.jsx";
+import ToDoList from "./TodoList/ToDoList.jsx";
 
 // Other Components
 import Window from "./Window/Window.jsx";
@@ -74,6 +74,7 @@ function AppContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   // Translation Namespace References
+  const { t: mainT } = useTranslation("");
   const { t: notificationsT } = useTranslation("notifications");
   const { t: windowsT } = useTranslation("windows");
 
@@ -209,6 +210,7 @@ function AppContent() {
       <div className="appHeader">
         <div className="appHeaderContainer">
           <img className="appIcon" src={iconImage} />
+          <span className={`mainAppHeading`}>{mainT("title")}</span>
           <Select
             onChange={handleChangeLanguage}
             defaultValue={i18n.language}

@@ -33,6 +33,7 @@ import ImportImage from "./import.svg?react";
 import DeletePicture from "./delete.svg?react";
 import ExpandImage from "./expand.svg?react";
 import CollapseImage from "./collapse.svg?react";
+import AutoResizeTextarea from "../AutoResizeTextarea/AutoResizeTextarea.jsx";
 
 // Global Variable Declerations
 // Export
@@ -309,6 +310,9 @@ const htmlExportSample = `<html>
 function ToDoList() {
   // Main Variables
 
+  // Has CSS Support script loaded?
+  const [cssSupportLoaded, setCSSSupport] = useState(false);
+
   // Firebase authentication variables (Using context from another script)
   const {user} = useAuth(); 
 
@@ -342,6 +346,26 @@ function ToDoList() {
       setListExpanded(false);
     }
   }, [tasks])
+
+  // Detect when CSS Support variables has loaded
+  useEffect(() => {
+    // Check immediately in case it's already loaded
+    if (window.cssCompatibility !== undefined) {
+      setCSSSupport(true);
+      return; // Exit if found
+    }
+
+    // If not found, start polling
+    const intervalId = setInterval(() => {
+      if (window.cssCompatibility !== undefined) {
+        setCSSSupport(true);
+        clearInterval(intervalId); // Stop the interval once the variable is found
+      }
+    }, 100); // Check every 100ms
+
+    // Cleanup function to clear the interval if the component unmounts
+    return () => clearInterval(intervalId);
+  }, [])
 
   // Memoized functions for actions
 
@@ -448,6 +472,8 @@ function ToDoList() {
       setNewTask((oldNewTask) => ({ ...oldNewTask, desc: event.target.value }));
     } else if (event.target.id === "searchTasksInput") {
       setTaskFilter(event.target.value);
+    } else if (event.target.id === "list_name_heading") {
+      setListName(event.target.value)
     }
   }, []);
 
@@ -488,6 +514,9 @@ function ToDoList() {
   const [fExtension, setFExtension] = useState("");
   const [exportDocTheme, setExportDocTheme] = useState("dark");
 
+    // List Name
+  const [listNameInput, setListNameInput] = useState(listName)
+
   // List ToolBar
   const [listExpanded, setListExpanded] = useState(false);
   const [taskFilter, setTaskFilter] = useState("")
@@ -499,6 +528,21 @@ function ToDoList() {
   const themeSelect = useState(null);
 
   // -- Functions
+
+  // List Name Input
+  const handleListNameInputChange = (event) => {
+    setListNameInput(event.target.value)
+  }
+
+  // Handle List Name Changes
+  useEffect(() => {
+    if (listName.trim() === "") {
+      setListName(listT("title"))
+      setListNameInput(listT("title"))
+    } else if (listName !== listNameInput) {
+      setListNameInput(listName)
+    }
+  }, [listName])
 
   // Download the document generated
   const downloadDocument = () => {
@@ -1245,9 +1289,14 @@ function ToDoList() {
       {/* -- Main Content -- */}
       <div className={`to-do-list ${listExpanded ? "collapsed" : ""}`}>
         {/* Heading */}
-        <h1 className={`text-heading mainAppHeading ${listExpanded ? "collapsed" : ""}`}>{mainT("main_heading")}</h1>
-
-        {/* To-Do List */}
+        {
+          cssSupportLoaded ?
+          <div className={`listNameHeadingContainer ${listExpanded ? "collapsed" : ""}`}>
+          <AutoResizeTextarea id="list_name_heading" onChange={handleListNameInputChange} onBlur={handleInputChange} value={listNameInput} className={`text-heading listNameHeading`} />
+          </div>
+          : ""
+        }
+          {/* To-Do List */}
         <div className={`list-backdrop ${listExpanded ? "collapsed" : ""}`}>
           {/* Add Task form */}
           <div className="flex-break content-container">
