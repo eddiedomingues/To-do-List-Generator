@@ -14,6 +14,13 @@
     "delete_button": "Effacer les Tâches",
     "import_button": "Importer"
   },
+    "list_toolbar": {
+    "tooltip": {
+      "expand": "Développer la liste",
+      "collapse": "Réduire la liste"
+    },
+    "searchInput": "Rechercher par nom ou description de la tâche.."
+  },
   "list": {
     "no_tasks": "Aucune tâche disponible. Ajoutez-en une ci-dessus !",
     "desc_trigger_text": {

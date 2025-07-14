@@ -249,6 +249,33 @@ select:focus {
   color: white;
 }
 
+/* Tooltips */
+.tooltip-parent {
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  flex-direction: row-reverse;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.tooltip {
+  background-color: #383838;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.5rem;
+  position: fixed;
+  font-weight: lighter;
+  font-style: italic;
+  user-select: none;
+  text-align: right;
+  color: rgb(255 255 255 / 87%) !important;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
 /* Prevent the user from selecting some content (This allows the user to select all the important content) */
 
 .list-backdrop * {

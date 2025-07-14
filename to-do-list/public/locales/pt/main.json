@@ -14,6 +14,13 @@
     "delete_button": "Limpar Tarefas",
     "import_button": "Importar"
   },
+    "list_toolbar": {
+    "tooltip": {
+      "expand": "Expandir Lista",
+      "collapse": "Recolher Lista"
+    },
+    "searchInput": "Pesquisar por nome ou descrição da tarefa.."
+  },
   "list": {
     "no_tasks": "Nenhuma tarefa disponível. Adicione uma acima!",
     "desc_trigger_text": {

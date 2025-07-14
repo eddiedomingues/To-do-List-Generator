@@ -14,6 +14,13 @@
     "delete_button": "Clear Tasks",
     "import_button": "Import"
   },
+  "list_toolbar": {
+    "tooltip": {
+      "expand": "Expand List",
+      "collapse": "Collapse List"
+    },
+    "searchInput": "Search for a task name or description.."
+  },
   "list": {
     "no_tasks": "No tasks available. Add one above!",
     "desc_trigger_text": {

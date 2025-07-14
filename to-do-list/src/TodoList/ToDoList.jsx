@@ -31,6 +31,8 @@ import {useAuth } from '../Firebase/AuthContext';
 import ExportImage from "./export.svg?react";
 import ImportImage from "./import.svg?react";
 import DeletePicture from "./delete.svg?react";
+import ExpandImage from "./expand.svg?react";
+import CollapseImage from "./collapse.svg?react";
 
 // Global Variable Declerations
 // Export
@@ -334,6 +336,13 @@ function ToDoList() {
 
   // --- Hooks
 
+  // Automatically collapse the top toolbar when there is no tasks
+  useEffect(() => {
+    if (tasks.length < 1) {
+      setListExpanded(false);
+    }
+  }, [tasks])
+
   // Memoized functions for actions
 
   // Delete Task
@@ -437,6 +446,8 @@ function ToDoList() {
       setNewTask((oldNewTask) => ({ ...oldNewTask, name: event.target.value }));
     } else if (event.target.id === "task-desc") {
       setNewTask((oldNewTask) => ({ ...oldNewTask, desc: event.target.value }));
+    } else if (event.target.id === "searchTasksInput") {
+      setTaskFilter(event.target.value);
     }
   }, []);
 
@@ -476,6 +487,10 @@ function ToDoList() {
   const [gFileName, setGFileName] = useState("");
   const [fExtension, setFExtension] = useState("");
   const [exportDocTheme, setExportDocTheme] = useState("dark");
+
+  // List ToolBar
+  const [listExpanded, setListExpanded] = useState(false);
+  const [taskFilter, setTaskFilter] = useState("")
 
   // Mobile Detection
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -1023,6 +1038,11 @@ function ToDoList() {
     return [];
   }, [window.app]); // The dependency array ensures this code only re-runs if `window.app` changes
 
+  // Expanding/Collapsing List
+  const toggleExpandList = () => {
+    setListExpanded(v => !v);
+  } 
+
   // Main return
   return (
     <>
@@ -1223,12 +1243,12 @@ function ToDoList() {
       </Window>
 
       {/* -- Main Content -- */}
-      <div className="to-do-list">
+      <div className={`to-do-list ${listExpanded ? "collapsed" : ""}`}>
         {/* Heading */}
-        <h1 className="text-heading mainAppHeading">{mainT("main_heading")}</h1>
+        <h1 className={`text-heading mainAppHeading ${listExpanded ? "collapsed" : ""}`}>{mainT("main_heading")}</h1>
 
         {/* To-Do List */}
-        <div className="list-backdrop">
+        <div className={`list-backdrop ${listExpanded ? "collapsed" : ""}`}>
           {/* Add Task form */}
           <div className="flex-break content-container">
           <div id="task-name-group" className="input-group">
@@ -1294,32 +1314,56 @@ function ToDoList() {
             </div>
           </div>
         </div>
+        {/* List Toolbar 
+        If there is no tasks, then don't render it..
+        */}
+        {tasks.length !== 0 ? <div className="listToolBar">
+        <input value={taskFilter} onChange={handleInputChange} id="searchTasksInput" placeholder={mainT("list_toolbar.searchInput")} />
+        <button className="listToolBar-expandButton" onClick={toggleExpandList}>
+          {listExpanded ? <CollapseImage className="expand-image" /> : <ExpandImage className="expand-image" />}
+        </button>
+        <div className="tooltip-parent" id="exCol-tooltip">
+        <span  className="tooltip">{listExpanded ? mainT("list_toolbar.tooltip.collapse") : mainT("list_toolbar.tooltip.expand")}</span>
+          </div>
+      </div> : []}
         {/* Main List */}
         <main className="scrollable-list-wrapper-grid">
-          <ul className={`list-container`}>
-            {tasks.length === 0 ? (
-              <p className="no-tasks-message">{mainT("list.no_tasks")}</p>
-            ) : (
-              tasks.map((task, index) => (
-                // Use ListItem component
-                <ListItem
-                  // Pass all the necessary props
-                  key={task.id || index}
-                  task={task}
-                  index={index}
-                  isLast={tasks.length - 1 === index}
-                  deleteCurrentTask={memoizedDeleteTask}
-                  moveTaskDown={memoizedMoveTaskDown}
-                  moveTaskUp={memoizedMoveTaskUp}
-                  editTask={memoizedEditTask}
-                  handleEditMode={memoizedEditModeTask}
-                  isDeleting={tasks[index].delete}
-                  isEditing={editingTaskId === task.id}
-                  onSetEditing={handleSetEditingId}
-                />
-              ))
-            )}
-          </ul>
+<ul className={`list-container`}>
+  {tasks.length === 0 ? (
+    <p className="no-tasks-message">{mainT("list.no_tasks")}</p>
+  ) : (
+    <>
+      {
+        (() => { // Using an IIFE to keep const inside the block
+          const searchKeywords = taskFilter.toLowerCase().split(' ').filter(k => k);
+          // The .map() function needs to return an array of elements
+          return tasks.map((task, index) => {
+            const taskText = (task.name + ' ' + task.desc).toLowerCase();
+            const hasTerm = searchKeywords.every(keyword => taskText.includes(keyword));
+
+            // You were missing the "return" statement here
+            return hasTerm ? (
+              <ListItem
+                key={task.id || index}
+                task={task}
+                index={index}
+                isLast={tasks.length - 1 === index}
+                deleteCurrentTask={memoizedDeleteTask}
+                moveTaskDown={memoizedMoveTaskDown}
+                moveTaskUp={memoizedMoveTaskUp}
+                editTask={memoizedEditTask}
+                handleEditMode={memoizedEditModeTask}
+                isDeleting={tasks[index].delete}
+                isEditing={editingTaskId === task.id}
+                onSetEditing={handleSetEditingId}
+              />
+            ) : null; // Return null for items that don't match the filter
+          });
+        })()
+      }
+    </>
+  )}
+</ul>
         </main>
       </div>
     </>

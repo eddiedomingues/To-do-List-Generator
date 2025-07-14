@@ -8,9 +8,11 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  display: grid;
+  flex-direction: column;
+  display: flex;
   height: 100%;
-  grid-template-rows: auto 1fr auto;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
 }
 
 html {
@@ -53,8 +55,9 @@ html {
 .appHeader {
   width: 100vw;
   margin-top: 0.5rem;
-  height: 3.2rem;
-  overflow: visible;
+  height: 2rem;
+  max-height: 2rem;
+  min-height: 2rem;
 }
 
 .appHeaderContainer {
@@ -131,6 +134,9 @@ html {
   /* Make the actual text color transparent. */
   color: transparent;
   font-weight: 700;
+  opacity: 1;
+  max-height: 100vh;
+  height: fit-content;
 }
 
 /* ============================================= */
@@ -139,12 +145,52 @@ html {
 
 /* Main Layout */
 .to-do-list {
-  justify-content: center;
-  overflow: hidden;
-  display: grid;
-  height: 100%;
-  grid-template-rows: min-content min-content 1fr;
+  flex-grow: 1;
+  /* I changed it to display:flex for IOS support, due to the fact that IOS browsers are buggy when it comes to display:grid */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   gap: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 1;
+  transition: gap 0.5s ease-in-out;
+}
+
+.to-do-list.collapsed {
+  gap: 0rem;
+}
+
+/* Allow for smooth transition */
+/* Base state of the collapsible elements */
+.mainAppHeading,
+.list-backdrop {
+  /* These properties will be animated */
+  max-height: 1000px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height 0.4s ease-in-out, opacity 0.2s ease-in-out,
+    visibility 0s linear 0s,
+    /* Make visibility change instantly on expand */ margin 0.4s ease-in-out,
+    padding 0.4s ease-in-out;
+}
+
+/* Collapsed state with the delayed visibility change */
+.mainAppHeading.collapsed,
+.list-backdrop.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+
+  /* * THE KEY:
+   * Instantly switch to 'hidden' but only AFTER the max-height animation (0.4s) is complete.
+   */
+  visibility: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.2s ease-in-out,
+    visibility 0s linear 0.4s, margin 0.4s ease-in-out, padding 0.4s ease-in-out;
 }
 
 /* Control Content */
@@ -161,8 +207,23 @@ html {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: fit-content;
+  max-height: 90vh;
 }
+
+/* Collapsed States */
+.list-backdrop > * {
+  /* Set an initial maxHeight and width for smooth transitions */
+  opacity: 1;
+  max-height: 100vh;
+  transition: opacity 0.5s ease-in-out, 0.5s, max-height 0.5s ease-in-out;
+}
+/* Collapsed class state */
+.list-backdrop.collapsed > * {
+  max-height: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
 .list-backdrop textarea {
   font-size: 0.9rem;
 }
@@ -198,10 +259,66 @@ html {
 }
 
 /* Task List */
+/* List Toolbar */
+.listToolBar {
+  border-radius: var(--input-border-radius);
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+  display: flex;
+  background-color: rgb(105 105 105 / 22%);
+}
+/* Task searching input */
+.listToolBar #searchTasksInput {
+  flex-grow: 1;
+  box-shadow: none;
+}
+
+/* Expand/Collapse Button */
+.listToolBar .listToolBar-expandButton {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  display: grid;
+  box-shadow: none;
+  height: 2rem;
+  width: 2rem;
+  padding-top: var(--input-padding-y);
+  padding-bottom: var(--input-padding-y);
+  padding-left: var(--input-padding-x);
+  padding-right: var(--input-padding-x);
+  background-color: transparent;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+.listToolBar-expandButton > svg {
+  height: 150%;
+  fill: rgba(180, 180, 180, 0.87);
+}
+.listToolBar-expandButton:hover:enabled {
+  background-color: rgba(255, 255, 255, 0.089);
+}
+.listToolBar-expandButton:hover:enabled + #exCol-tooltip {
+  opacity: 1;
+}
+.listToolBar-expandButton:hover > svg {
+  fill: rgba(255, 255, 255, 0.87);
+}
+
+/* Expand/Collapse Tooltip */
+#exCol-tooltip {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  grid-area: none;
+  transform: translateX(-3rem);
+}
+
+/* Main Scroll List */
 .scrollable-list-wrapper-grid {
   overflow-y: auto;
-  max-width: 90%;
-  transform: translateX(5%);
+  flex-grow: 1;
+  min-height: 0;
 }
 
 .list-container {
@@ -245,6 +362,8 @@ html {
 .to-do-item {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   opacity: 1;
   max-height: fit-content;
   box-sizing: border-box;
@@ -252,7 +371,7 @@ html {
   transition: opacity 0.2s ease-out, max-height 0.2s ease-out,
     padding 0.2s ease-out;
 }
-.to-do-item:nth-child(even) {
+.list-container > li:nth-child(even) {
   background-color: rgb(105 105 105 / 22%);
 }
 .to-do-item.deleting {
@@ -288,7 +407,18 @@ html {
   grid-template-columns: min-content auto;
   gap: 0px 0px;
   grid-template-rows: 1fr;
+  align-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Added this to try to center all of the text of the task name and number for older browsers */
+.name-container * {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* Item Text Content */
@@ -301,6 +431,7 @@ html {
   font-weight: 600;
   white-space: normal;
   text-wrap-mode: wrap;
+  text-align: left;
   padding: 0.2rem !important;
   margin: 0 !important;
   line-height: 1.5;
@@ -521,12 +652,15 @@ button.delete-button:hover:enabled {
 }
 
 /* --- Button Images --- */
+.expand-image,
 .add-image,
 .desc-image,
 .task-image {
   transition-property: fill;
   transition-duration: 0.2s;
+  fill: rgba(180, 180, 180, 0.87);
 }
+.expand-image:hover,
 .add-image:hover,
 .desc-image:hover,
 .task-image:hover {
@@ -902,6 +1036,7 @@ button.delete-button:hover:enabled {
   }
   .mainAppHeading {
     font-size: 3.3rem;
+    min-height: fit-content;
   }
 
   /* Notifications */
