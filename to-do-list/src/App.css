@@ -84,7 +84,7 @@ html {
 }
 
 .select.languageSelect {
-  height: 100%;
+  height: 1.8rem;
   margin-right: 0.3rem;
   background-color: transparent;
   box-shadow: none;
