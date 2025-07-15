@@ -705,44 +705,34 @@ button.delete-button:hover:enabled {
 /* Base Style */
 .appWindow {
   border-radius: var(--input-border-radius);
+  max-height: 90% !important;
+  max-width: 90% !important;
+  width: max-content;
+  height: max-content;
 }
 
-/* Window Sizing */
-.export-window {
-  width: fit-content;
-  height: fit-content;
-}
-
-.preview-window {
-  width: 70%;
-  height: 95%;
-}
-
-.delete-window {
-  max-width: 70%;
-  max-height: 95%;
-}
-
-/* Log In Window */
-.logInWindow {
-  width: fit-content;
-  white-space: nowrap;
-}
 .logInWindow-Content {
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
   flex-wrap: nowrap;
   flex-direction: column;
+  text-align: start;
   gap: 1em;
 }
 
+.logInWindow-Content * {
+  box-sizing: border-box;
+}
+
 .logInWindow-Content > div {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  grid-template-rows: min-content;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: center;
+  align-items: flex-start;
+}
+.logInWindow-Content > div > input {
+  flex-grow: 1;
 }
 
 .logInWindow-button {
@@ -982,21 +972,17 @@ button.delete-button:hover:enabled {
 
 /* IPads, Big Phones (max-width: 768px) */
 @media screen and (max-width: 768px) {
+  .logInWindow-Content > div {
+    flex-direction: column;
+  }
+  .logInWindow-Content * {
+    width: 100%;
+  }
   .preview-window {
     width: 80%;
     height: 90%;
   }
-  .export-window {
-    width: 80%;
-    height: 75%;
-  }
-  .delete-window {
-    height: 60%;
-    width: 80%;
-  }
-  .logInWindow {
-    width: 80%;
-  }
+
   setOptionsPosition {
     width: 70%;
   }
@@ -1127,14 +1113,6 @@ button.delete-button:hover:enabled {
     width: 85%;
     height: 93%;
   }
-  .export-window {
-    width: 80%;
-    height: 85%;
-  }
-  .delete-window {
-    height: 50%;
-    width: 80%;
-  }
   #task-name-group {
     width: 90%;
   }
@@ -1155,7 +1133,7 @@ button.delete-button:hover:enabled {
 
   /* Typography */
   .text-heading {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
   }
 
   .mainAppHeading {

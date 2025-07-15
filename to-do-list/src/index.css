@@ -290,6 +290,8 @@ select:focus {
 }
 .no-tasks-message {
   user-select: none;
+  max-width: 80%;
+  box-sizing: border-box;
 }
 
 /* ============================================= */
