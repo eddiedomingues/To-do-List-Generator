@@ -30,43 +30,44 @@ function NotificationsManager() {
                     timerClassName: "appNotification-timer",
                     closeContainerClassName: "appNotification-closeContainer"
         }
-        const info = useCallback((heading, text) => {
+        const info = useCallback((heading, text, timer) => {
                 window.addAppNotification({footer: <h3 className="notificationHeading">{heading}</h3>,
                     content: <><span className="notificationContent">{text}</span></>,
                     icon: <InfoImage className={"notification-info"}></InfoImage>,
                     autoDismiss: true,
+                    autoDismissTimer: (timer ? timer : undefined),
                     ...notificationClasses
                 });
         }, [window.addAppNotification])
 
-                const warning = useCallback((heading, text) => {
+                const warning = useCallback((heading, text, timer) => {
                 window.addAppNotification({footer: <h3 className="notificationHeading">{heading}</h3>,
                     content: <><span className="notificationContent">{text}</span></>,
                     icon: <WarningImage className={"notification-warning"}></WarningImage>,
                     backgroundColor: "rgba(105, 86, 0, 0.22)",
                     autoDismiss: true,
-                    autoDismissTimer: 10000,
+                    autoDismissTimer: (timer ? timer : 10000),
                     ...notificationClasses
                 });
         }, [window.addAppNotification])
 
-                const error = useCallback((heading, text) => {
+                const error = useCallback((heading, text, timer) => {
                window.addAppNotification({footer: <h3 className="notificationHeading">{heading}</h3>,
                     content: <><span className="notificationContent">{text}</span></>,
                     icon: <ErrorImage className={"notification-error"}></ErrorImage>,
                     backgroundColor: "rgba(105, 0, 0, 0.22)",
                     autoDismiss: true,
-                    autoDismissTimer: 10000,
+                    autoDismissTimer: (timer ? timer : 10000),
                     ...notificationClasses
                 });
         }, [window.addAppNotification])
-                const success = useCallback((heading, text) => {
+                const success = useCallback((heading, text, timer) => {
                window.addAppNotification({footer: <h3 className="notificationHeading">{heading}</h3>,
                     content: <><span className="notificationContent">{text}</span></>,
                     icon: <SuccessImage className={"notification-error"}></SuccessImage>,
                     backgroundColor: "rgba(0, 105, 0, 0.22)",
                     autoDismiss: true,
-                    autoDismissTimer: 7000,
+                    autoDismissTimer: (timer ? timer : 7000),
                     ...notificationClasses
                 });
         }, [window.addAppNotification])

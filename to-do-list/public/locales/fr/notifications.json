@@ -4,13 +4,17 @@
             "exportMethodFail": {
                 "heading": "Sélectionnez une méthode valide",
                 "content": "Veuillez sélectionner l'une des méthodes d'exportation valides"
-            }
+            },
+              "noAuth": {
+    "heading": "Veuillez vous connecter",
+    "content": "Pour exporter en PDF ou .DOCX, veuillez vous connecter à un compte. Si vous souhaitez un compte de démonstration, veuillez contacter le propriétaire du site."
+  }
         },
         "errors": {
             "heading": "Erreur lors de l'exportation",
             "content": {
                 "failConnectServer": "Échec de la connexion au serveur",
-                "httpError": "Erreur HTTP ! Statut :",
+                "httpError": "Erreur HTTP !",
                 "wordError": "Erreur lors de l'exportation du document Word",
                 "unexpectedError": "Une erreur inattendue est survenue"
             }

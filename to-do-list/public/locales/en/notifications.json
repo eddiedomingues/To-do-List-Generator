@@ -4,6 +4,10 @@
             "exportMethodFail": {
                 "heading": "Select a valid method",
                 "content": "Please select one of the valid exporting methods"
+            },
+            "noAuth": {
+                "heading": "Please log in",
+                "content": "To export to PDF or .DOCX methods please sign in onto an account. If you want an account for demonstration please contact the site owner."
             }
         },
         "errors": {

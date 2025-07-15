@@ -708,8 +708,8 @@ button.delete-button:hover:enabled {
 
 /* Window Sizing */
 .export-window {
-  width: 35rem;
-  height: 25rem;
+  width: fit-content;
+  height: fit-content;
 }
 
 .preview-window {
@@ -725,12 +725,14 @@ button.delete-button:hover:enabled {
 /* Log In Window */
 .logInWindow {
   width: fit-content;
+  white-space: nowrap;
 }
 .logInWindow-Content {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+  flex-direction: column;
   gap: 1em;
 }
 
@@ -761,15 +763,12 @@ button.delete-button:hover:enabled {
 
 /* --- Export Window --- */
 .export-form {
-  display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
-  grid-template-columns: minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1em;
 }
 .export-form > * {
-  grid-template-rows: minmax(0, min-content);
-  grid-template-columns: min-content minmax(0, max-content);
-  display: grid;
+  display: flex;
   gap: 0.5rem;
 }
 .export-form > * > * {
@@ -896,6 +895,7 @@ button.delete-button:hover:enabled {
 .appNotification {
   border-radius: var(--input-border-radius);
   margin-right: 1rem;
+  max-width: 70%;
 }
 
 .notificationHeading {
@@ -1039,12 +1039,14 @@ button.delete-button:hover:enabled {
     overflow-y: auto;
     overflow-x: hidden;
   }
+  .export-form {
+    flex-grow: 1;
+  }
   .export-form > * {
-    display: grid;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
     gap: 0.5rem;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr;
-    grid-template-rows: min-content min-content;
   }
   .export-form > * > label {
     text-align: left;

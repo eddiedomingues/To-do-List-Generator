@@ -44,10 +44,9 @@ This file follows a hierarchical structure matching the JSX:
   top: 50%;
   left: 50%;
   background-color: #242424;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  grid-template-columns: auto;
-  grid-template-rows: minmax(0, min-content) auto minmax(0, min-content);
 
   /* Animation start state */
   transform: translate(-50%, -50%) scale(0.1);
@@ -116,6 +115,9 @@ This file follows a hierarchical structure matching the JSX:
 
 /* Content */
 .content {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
   overflow: auto;
 }
 

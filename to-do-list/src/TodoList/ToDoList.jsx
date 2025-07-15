@@ -585,12 +585,10 @@ function ToDoList() {
     // Firebase authentication
     let authorizationToken = ""
     try {
-      user ? authorizationToken = (await user.getIdToken()) : [];
+      user ? authorizationToken = (await user.getIdToken()) : authorizationToken = "null";
     } catch(error) {
       authorizationToken = "null"
     }
-
-    console.log(authorizationToken)
 
     // File Name
     let fileName =
@@ -660,6 +658,11 @@ function ToDoList() {
       // Success Notification
       notitifyFileGenSuccess(fileName, exportMethod);
     } else if (exportMethod === "word") {
+            if(authorizationToken === "null") { 
+              setIsExporting(false);
+        window.notificationManager.warning(notificationsT("export.warnings.noAuth.heading"), notificationsT("export.warnings.noAuth.content"), 15000)
+              return;
+      }
       // Word export method
       setFExtension("docx");
       setGFileName(fileName);
@@ -765,6 +768,11 @@ function ToDoList() {
       notitifyFileGenSuccess(fileName, exportMethod);
       setDocPreWindowVis(true);
     } else if (exportMethod === "pdf") {
+            if(authorizationToken === "null") { 
+              setIsExporting(false);
+        window.notificationManager.warning(notificationsT("export.warnings.noAuth.heading"), notificationsT("export.warnings.noAuth.content"), 15000)
+              return;
+      }
       // Export PDF method
       setFExtension("pdf");
       setGFileName(fileName);

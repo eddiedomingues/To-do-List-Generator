@@ -4,7 +4,11 @@
             "exportMethodFail": {
                 "heading": "Selecione um método válido",
                 "content": "Por favor, selecione um dos métodos de exportação válidos"
-            }
+            },
+              "noAuth": {
+    "heading": "Por favor, inicie sessão",
+    "content": "Para exportar para PDF ou .DOCX, por favor, inicie sessão numa conta. Se desejar uma conta para demonstração, contacte o proprietário do site."
+  }
         },
         "errors": {
             "heading": "Erro ao exportar",

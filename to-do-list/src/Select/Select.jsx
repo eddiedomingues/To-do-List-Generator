@@ -125,6 +125,7 @@ function Select({style, children, defaultValue, placeholder, onChange, className
                 // The final width required
             const requiredOptionsWidth = optionsContentWidth + scrollbarWidth;
 
+            console.log(`Width: ${width}`)
             // Check if the width prop was passed down in the props of this component
             if (width === undefined) {
                 // If there is no width variable resize the width to fit content
@@ -196,9 +197,9 @@ function Select({style, children, defaultValue, placeholder, onChange, className
                             if (!isOpen) {
                 setShadowStyles
             }
-                resizeSelect();
             }
             if (isOpen) {
+                resizeSelect();
                 // Create the ResizeObserver
                 const observer = new ResizeObserver(entries => {
                 // The callback gives us an array of entries, but we only need the first one
@@ -230,6 +231,7 @@ function Select({style, children, defaultValue, placeholder, onChange, className
 
     // Resize select when width prop changes
     useEffect(() => {
+        console.log("Got")
         resizeSelect()
     }, [width])
 
