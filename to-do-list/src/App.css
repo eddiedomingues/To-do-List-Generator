@@ -84,6 +84,7 @@ html {
 }
 
 .select.languageSelect {
+  /* Changed to a fixed height to prevent resizing when overflow occurs on the header and the header resizes because so */
   height: 1.8rem;
   margin-right: 0.3rem;
   background-color: transparent;
