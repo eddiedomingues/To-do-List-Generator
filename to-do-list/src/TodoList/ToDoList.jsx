@@ -472,7 +472,7 @@ function ToDoList() {
       setNewTask((oldNewTask) => ({ ...oldNewTask, desc: event.target.value }));
     } else if (event.target.id === "searchTasksInput") {
       setTaskFilter(event.target.value);
-    } else if (event.target.id === "list_name_heading") {
+    } else if (event.target.id === "list_name_heading" || event.target.id === "ex-lname") {
       setListName(event.target.value)
     }
   }, []);
@@ -1222,8 +1222,9 @@ function ToDoList() {
               </label>
               <input
                 id="ex-lname"
-                onChange={handleExportInputChange}
-                value={listName}
+                onChange={handleListNameInputChange}
+                onBlur={handleInputChange}
+                value={listNameInput}
                 type="text"
                 name=""
                 minLength="1"
