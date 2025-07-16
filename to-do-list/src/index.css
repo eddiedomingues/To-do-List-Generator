@@ -325,3 +325,8 @@ select:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
+
+/* Hide the custom placeholder when a date is selected */
+.date-input-wrapper input:valid + .placeholder-text {
+  display: none;
+}

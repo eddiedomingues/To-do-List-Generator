@@ -25,6 +25,7 @@
     "desc_trigger_text": {
       "show": "Mostrar Descripción",
       "hide": "Ocultar Descripción"
-    }
+    },
+    "dateInputPlaceholder": "Seleccione una fecha para la lista"
   }
 }

@@ -17,6 +17,9 @@ import { useTranslation } from "react-i18next";
 // Custom Hooks
 import useMediaQuery from '../CustomFunctions/useMediaQuery.jsx';
 
+// Custom Functions
+import formatTimeUntil from '../CustomFunctions/formatTimeUntil.jsx';
+
 // Components
 import ListItem from "./ListItem.jsx";
 import Window from "../Window/Window.jsx";
@@ -964,7 +967,7 @@ function ToDoList() {
     if (event.target.id === "ex-fname") {
       setExportFileName(event.target.value);
     }
-    if (event.target.id === "ex-date") {
+    if (event.target.id === "ex-date" || event.target.id === "main-date") {
       setExportDate(event.target.value);
     }
     if (event.target.id === "ex-lname") {
@@ -1094,6 +1097,15 @@ function ToDoList() {
   const toggleExpandList = () => {
     setListExpanded(v => !v);
   } 
+  let exportDateContent = null;
+  // Export Date
+  if (exportDate.trim() !== "") {
+    let newExportDate = new Date(exportDate).getTime()
+    let displayDate = formatTimeUntil(exportDate);
+    exportDateContent = <div className={`exportDateProgress ${listExpanded ? "collapsed" : ""}`}>{displayDate}</div>
+  } else {
+    exportDateContent = <span>{mainT("list.dateInputPlaceholder")}</span>
+  }
 
   // Main return
   return (
@@ -1243,14 +1255,11 @@ function ToDoList() {
               <label>
                 {windowsT("export.exportMain.content.listCompletionDate.label")}
               </label>
-              <input
-                id="ex-date"
+  <input id="ex-date"
                 onChange={handleExportInputChange}
                 value={exportDate}
                 type="date"
-                name="list_date"
-                placeholder="The list date that you need to complete it by"
-              />
+                name="list_date" required />
             </div>
             <div
               className={`export-theme ${
@@ -1305,6 +1314,20 @@ function ToDoList() {
           </div>
           : ""
         }
+        <div className="dateContainer">
+          <div className={`dateContainer-inputContainer flex-break ${listExpanded ? "collapsed" : ""}`}>
+                      <input
+                id="main-date"
+                onChange={handleExportInputChange}
+                value={exportDate}
+                type="date"
+                name="list_date"
+              />
+        </div>
+        {
+          exportDateContent
+        }
+        </div>
           {/* To-Do List */}
         <div className={`list-backdrop ${listExpanded ? "collapsed" : ""}`}>
           {/* Add Task form */}

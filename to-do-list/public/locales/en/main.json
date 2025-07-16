@@ -26,6 +26,7 @@
     "desc_trigger_text": {
       "show": "Show Description",
       "hide": "Hide Description"
-    }
+    },
+    "dateInputPlaceholder": "Select a date for the list"
   }
 }

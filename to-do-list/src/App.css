@@ -167,6 +167,21 @@ html {
   box-shadow: none;
 }
 
+/* Export Date Progress */
+.dateContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 0.25rem;
+}
+.dateContainer-inputContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 80%;
+  flex-grow: 1;
+}
 /* Main Layout */
 .to-do-list {
   flex-grow: 1;
@@ -200,8 +215,7 @@ html {
 }
 
 /* Collapsed state with the delayed visibility change */
-.listNameHeadingContainer.collapsed,
-.list-backdrop.collapsed {
+.to-do-list.collapsed .collapsed {
   max-height: 0;
   opacity: 0;
   margin-top: 0;
