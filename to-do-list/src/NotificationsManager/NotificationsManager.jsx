@@ -67,7 +67,7 @@ function NotificationsManager() {
                     icon: <SuccessImage className={"notification-error"}></SuccessImage>,
                     backgroundColor: "rgba(0, 105, 0, 0.22)",
                     autoDismiss: true,
-                    autoDismissTimer: (timer ? timer : 7000),
+                    autoDismissTimer: (timer ? timer : 1000000),
                     ...notificationClasses
                 });
         }, [window.addAppNotification])

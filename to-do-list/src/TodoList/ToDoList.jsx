@@ -1104,7 +1104,7 @@ function ToDoList() {
     let displayDate = formatTimeUntil(exportDate);
     exportDateContent = <div className={`exportDateProgress ${listExpanded ? "collapsed" : ""}`}>{displayDate}</div>
   } else {
-    exportDateContent = <span>{mainT("list.dateInputPlaceholder")}</span>
+    exportDateContent = <span style={{"flex-basis": "100%"}}>{mainT("list.dateInputPlaceholder")}</span>
   }
 
   // Main return
