@@ -616,7 +616,7 @@ function ToDoList() {
     });
 
     // Server url, uses a reference from the vite config file that automatically replaces 'api/' with the server address
-    const serverUrl = "https://api-qowqtvbp2a-uc.a.run.app";
+    const serverUrl = "https://api-hlr6dm7e6a-uc.a.run.app";
 
     // Set is exporting to trye
     setIsExporting(true);

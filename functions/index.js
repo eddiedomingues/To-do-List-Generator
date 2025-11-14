@@ -46,12 +46,40 @@ const {
   CreatePDFResult,
 } = require("@adobe/pdfservices-node-sdk");
 
-// --- Initialize Express App ---
 const app = express();
 
-app.set("trust proxy", 1);
+const allowedOrigins = [
+  "https://todo-list-generator.web.app",
+  "http://localhost:5173",
+  "http://172.20.10.3:5173",
+];
 
-// ✅ Create the authentication middleware
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow no-origin (e.g., curl, Postman) and allowlisted origins
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error("Not allowed by CORS"));
+  },
+  methods: ["POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204,
+};
+
+// 1) CORS must run BEFORE any other middleware
+app.use(cors(corsOptions));
+// 2) Explicitly handle preflight *for the exact route*
+app.options("/export-word", cors(corsOptions));
+
+// 3) Don’t rate-limit preflight
+const limiter = rateLimit({ windowMs: 60_000, max: 9 });
+app.use((req, res, next) =>
+  req.method === "OPTIONS" ? next() : limiter(req, res, next)
+);
+
+// 4) Body parser AFTER CORS
+app.use(express.json());
+
+// Create the authentication middleware
 const checkAuth = async (req, res, next) => {
   // 1. Get the token from the Authorization header
   const authHeader = req.headers.authorization;
@@ -78,22 +106,8 @@ const checkAuth = async (req, res, next) => {
   }
 };
 
-// Rate limited to prevent spam
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 9, // Limit each IP to 20 requests per `window`
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-  message: "Too many requests from this IP, please try again after a minute.",
-});
-
-// Automatically allow cross-origin requests
-app.use(cors({ origin: true }));
-app.use(express.json());
-app.use(limiter);
-
 // If post contains "/export-word"
-app.post("/export-word", checkAuth, async (req, res) => {
+app.post("/export-word", cors(corsOptions), checkAuth, async (req, res) => {
   try {
     // Get data from post request
     const { tasks, fileName, metaData, docTheme } = req.body;
@@ -391,6 +405,8 @@ app.post("/export-word", checkAuth, async (req, res) => {
 
 // Expose Express API as a single Cloud Function: 'api'
 exports.api = onRequest(
-  { secrets: ["ADOBE_CLIENT_ID", "ADOBE_CLIENT_SECRET"] },
+  {
+    secrets: ["ADOBE_CLIENT_ID", "ADOBE_CLIENT_SECRET"],
+  },
   app
 );

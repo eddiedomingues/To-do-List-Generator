@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "to-do-list-generator"
-  }
+    "default": "to-do-list-generator",
+    "Main": "todo-list-generator"
+  },
+  "targets": {},
+  "etags": {}
 }

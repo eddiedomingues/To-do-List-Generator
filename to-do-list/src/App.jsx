@@ -44,13 +44,13 @@ import { AuthProvider, useAuth } from "./Firebase/AuthContext";
 
 // My web app firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBVnakHRTLF1xMuOdREwPr8h-O2x43Ibfo",
-  authDomain: "to-do-list-generator.firebaseapp.com",
-  projectId: "to-do-list-generator",
-  storageBucket: "to-do-list-generator.firebasestorage.app",
-  messagingSenderId: "661443257994",
-  appId: "1:661443257994:web:49d4e451a7f898b4d06f73",
-  measurementId: "G-77V44R1WPM",
+  apiKey: "AIzaSyDZd9URDIkAB8zFh5JNoHt_PO6ByjR-SG0",
+  authDomain: "todo-list-generator.firebaseapp.com",
+  projectId: "todo-list-generator",
+  storageBucket: "todo-list-generator.firebasestorage.app",
+  messagingSenderId: "521455840398",
+  appId: "1:521455840398:web:2225eb9c58d656ca5e2ddf",
+  measurementId: "G-95X610XD0R"
 };
 
 // Initialize Firebase
